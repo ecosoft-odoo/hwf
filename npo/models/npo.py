@@ -189,7 +189,6 @@ class NpoProjectLine(models.Model):
     project_id = fields.Many2one(
         'npo.project',
         string='Project',
-        default=lambda self: self._context.get('active_id', False)
     )
     project_categ_id = fields.Many2one(
         'npo.project.categ',
@@ -228,10 +227,17 @@ class NpoProjectLine(models.Model):
         string='Statement Lines',
         readonly=True,
     )
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+        required=True,
+    )
     account_id = fields.Many2one(
         'account.account',
+        related='activity_id.account_id',
         string='Account',
-        required=True,
+        store=True,
+        readonly=True,
     )
     active = fields.Boolean(
         string='Active',
@@ -239,15 +245,17 @@ class NpoProjectLine(models.Model):
     )
     start_period_id = fields.Many2one(
         'account.period',
+        related='project_id.start_period_id',
         string='Start Period',
-        required=True,
-        default=lambda self: self._context.get('start_period_id', False)
+        store=True,
+        readonly=True,
     )
     end_period_id = fields.Many2one(
         'account.period',
+        related='project_id.end_period_id',
         string='End Period',
-        required=True,
-        default=lambda self: self._context.get('end_period_id', False)
+        store=True,
+        readonly=True,
     )
     date_start = fields.Date(
         related='start_period_id.date_start',
@@ -362,3 +370,26 @@ class NpoProjectLineBudgetLine(models.Model):
         vals.update({'budget_alloc': False,
                      'end_period_id': self._context.get('end_period_id')})
         return super(NpoProjectLineBudgetLine, self).create(vals)
+
+
+class NpoActivity(models.Model):
+    _name = 'npo.activity'
+    _description = 'Activity'
+
+    name = fields.Char(
+        string='Name',
+        size=256,
+        required=True,
+    )
+    account_id = fields.Many2one(
+        'account.account',
+        string='Account',
+        required=True,
+    )
+    active = fields.Boolean(
+        string='Active',
+        default=True,
+    )
+    _sql_constraints = [
+        ('uniq_name', 'unique(name)', "The name of this OBI must be unique !"),
+    ]

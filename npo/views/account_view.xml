@@ -50,24 +50,12 @@
                 						<field name="partner_id" string="Supplier" />
 					                    <field name="description" on_change="onchange_obi_id(obi_id, description)" required="1"/>
 					                    <field name="purpose" invisible="1"/>	                                    
-										<field domain="[('journal_id','=',parent.journal_id), ('company_id', '=', parent.company_id)]" name="account_id" on_change="onchange_project_line_id(False, account_id, context)" />
+										<field name="activity_id" on_change="onchange_project_line_id(False, activity_id, context)" />
+										<field name="account_id" />
 					                    <field name="quantity" on_change="onchange_qty_price(cash_type, quantity, unit_price)"/>
 					                    <field name="unit_price" on_change="onchange_qty_price(cash_type, quantity, unit_price)"/>
 	                                    <field name="amount"/>
 	                                </tree>
-	                                <form string="Statement lines" version="7.0">
-	                                    <group col="4">
-	                                        <field name="date"/>
-	                                        <field name="name"/>
-	                                        <field name="ref"/>
-	                                        <field name="partner_id" on_change="onchange_partner_id(partner_id)" />
-	                                        <field domain="[('journal_id', '=', parent.journal_id), ('type', '&lt;&gt;', 'view'), ('company_id', '=', parent.company_id)]" name="account_id"  />
-	                                        <field name="amount"/>
-	                                        <field name="sequence"/>
-	                                    </group>
-	                                    <separator string="Notes"/>
-	                                    <field name="note"/>
-	                                </form>
 	                            </field>
 			                    <group class="oe_subtotal_footer oe_right">
 			                    	<button name="button_dummy" states="open" string="(update)" type="object" class="oe_edit_only oe_link"/>
@@ -88,7 +76,6 @@
 	                                        <field name="pieces" readonly="1" />
 	                                        <field name="number_opening" string="Opening Unit Numbers" readonly="1" />
 	                                        <field name="subtotal_opening" string="Opening Subtotal" readonly="1" />
-	
 	                                        <field name="number_closing" string="Closing Unit Numbers" on_change="on_change_sub_closing(pieces, number_closing, parent.balance_end)"/>
 	                                        <field name="subtotal_closing" string="Closing Subtotal"/>
 	                                    </tree>

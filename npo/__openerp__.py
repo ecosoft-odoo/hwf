@@ -28,9 +28,6 @@
     'author': 'Kitti U.',
     'website': 'http://www.ecosoft.co.th',
     'depends': ['account',
-                'account_voucher',
-                'hr',
-                'purchase',
                 'web_m2x_options',],
     'data': [
         'security/module_data.xml',

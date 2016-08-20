@@ -23,9 +23,6 @@ from openerp import tools
 from openerp import fields, models, api
 import openerp.addons.decimal_precision as dp
 
-EUR = 351
-THAI = 142
-
 
 class HWFMonthlyReport(models.Model):
 
@@ -120,25 +117,43 @@ class HWFMonthlyReport(models.Model):
          ('04', 'April'), ('05', 'May'), ('06', 'June'),
          ('07', 'July'), ('08', 'August'), ('09', 'September'),
          ('10', 'October'), ('11', 'November'), ('12', 'December')],
-        string='Month', readonly=True,
+        string='Month',
+        readonly=True,
     )
     period_id = fields.Many2one(
-        'account.period', string='Period', readonly=True,
+        'account.period',
+        string='Period',
+        readonly=True,
     )
     account_id = fields.Many2one(
-        'account.account', string='Account', readonly=True,
+        'account.account',
+        string='Account',
+        readonly=True,
+    )
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+        readonly=True,
     )
     journal_id = fields.Many2one(
-        'account.journal', string='Journal', readonly=True,
+        'account.journal',
+        string='Journal',
+        readonly=True,
     )
     fiscalyear_id = fields.Many2one(
-        'account.fiscalyear', string='Fiscal Year', readonly=True,
+        'account.fiscalyear',
+        string='Fiscal Year',
+        readonly=True,
     )
     product_id = fields.Many2one(
-        'product.product', string='Product', readonly=True,
+        'product.product',
+        string='Product',
+        readonly=True,
     )
     product_uom_id = fields.Many2one(
-        'product.uom', string='Product Unit of Measure', readonly=True,
+        'product.uom',
+        string='Product Unit of Measure',
+        readonly=True,
     )
     move_state = fields.Selection(
         [('draft', 'Unposted'),
@@ -254,27 +269,32 @@ class HWFMonthlyReport(models.Model):
 
     @api.model
     def read_group(self, domain, fields, groupby,
-                   offset=0, limit=None, orderby=False):
+                   offset=0, limit=None, orderby=False, lazy=True):
         context = self._context or {}
-        fiscalyear_obj = self.env['account.fiscalyear']
+        Fiscal = self.env['account.fiscalyear']
         period_obj = self.env['account.period']
         if context.get('period', False) == 'current_period':
             ctx = dict(context, account_period_prefer_normal=True)
             current_period = period_obj.find(context=ctx)[0]
             domain.append(['period_id', 'in', [current_period]])
         elif context.get('year', False) == 'current_year':
-            current_year = fiscalyear_obj.find()
-            ids = fiscalyear_obj.read([current_year],
-                                      ['period_ids'])[0]['period_ids']
+            current_year = Fiscal.find()
+            fiscalyear = Fiscal.browse(current_year)
+            ids = fiscalyear.read(['period_ids'])[0]['period_ids']
             domain.append(['period_id', 'in', ids])
         else:
             domain = domain
         return super(HWFMonthlyReport, self).read_group(domain, fields,
                                                         groupby, offset=offset,
                                                         limit=limit,
-                                                        orderby=orderby)
+                                                        orderby=orderby,
+                                                        lazy=lazy)
 
     def init(self, cr):
+        cr.execute("select id from res_currency where name = 'EUR';")
+        res = cr.dictfetchone()
+        EUR = res['id'] or False
+        # Create View
         tools.drop_view_if_exists(cr, 'hwf_monthly_report')
         cr.execute("""
             create or replace view hwf_monthly_report as (
@@ -298,6 +318,7 @@ class HWFMonthlyReport(models.Model):
                 am.journal_id as journal_id,
                 p.fiscalyear_id as fiscalyear_id,
                 am.period_id as period_id,
+                l.activity_id as activity_id,
                 l.account_id as account_id,
                 l.analytic_account_id as analytic_account_id,
                 a.type as type,

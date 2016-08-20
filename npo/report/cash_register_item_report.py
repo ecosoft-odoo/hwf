@@ -79,17 +79,21 @@ class CashRegisterItemReport(models.Model):
     purpose = fields.Char(
         string='Purpose',
     )
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+    )
     account_id = fields.Many2one(
         'account.account',
         string='Account',
     )
-    quantity = fields.float(
+    quantity = fields.Float(
         string='Quantity',
     )
-    unit_price = fields.float(
+    unit_price = fields.Float(
         string='Unit Price',
     )
-    amount = fields.float(
+    amount = fields.Float(
         string='Amount',
     )
 
@@ -102,7 +106,8 @@ class CashRegisterItemReport(models.Model):
         line.project_line_id, line.obi_id, line.name, line.obi_dest_id,
         line.doc_number, line.project_categ_id, line.project_id,
         line.ref, line.partner_id, line.description, line.purpose,
-        line.account_id, line.quantity, line.unit_price, line.amount,
+        line.activity_id, line.account_id, line.quantity,
+        line.unit_price, line.amount,
         to_char(line.date::timestamp with time zone, 'YYYY'::text) AS year,
         to_char(line.date::timestamp with time zone, 'MM'::text) AS month,
         to_char(line.date::timestamp with time zone, 'YYYY-MM-DD'::text) AS day

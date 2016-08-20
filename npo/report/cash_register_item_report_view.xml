@@ -23,6 +23,7 @@
 				<field name="partner_id" string="Supplier" />
                 <field name="description" />
                 <field name="purpose" invisible="1"/>	                                    
+				<field name="activity_id"/>                                    
 				<field name="account_id"/>
                 <field name="quantity"/>
                 <field name="unit_price"/>
@@ -65,6 +66,7 @@
                     <filter string="Donor" name='obi_id' context="{'group_by':'obi_id'}"/>
                     <filter string="Rpt Donor" name='obi_dest_id' context="{'group_by':'obi_dest_id'}"/>
                     <filter string="Supplier" name='partner_id' context="{'group_by':'partner_id'}"/>
+                    <filter string="Activity" name='activity_id' context="{'group_by':'activity_id'}"/>
                     <filter string="Account" name='account_id' context="{'group_by':'account_id'}"/>
                     <filter string="Day" name="day" icon="terp-go-today" context="{'group_by':'day'}" help="Group by Oder Date"/>
                     <filter string="Month" name="month" icon="terp-go-month" context="{'group_by':'month'}" help="Group by month of Order Date"/>

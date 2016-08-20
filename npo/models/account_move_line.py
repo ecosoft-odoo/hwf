@@ -32,5 +32,10 @@ class AccountMoveLine(models.Model):
     description = fields.Char(
         string='Description',
         size=256,
-        required=True,
+        required=False,
+    )
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+        required=False,
     )

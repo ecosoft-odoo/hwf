@@ -19,7 +19,5 @@
 #
 ##############################################################################
 
-import npo
-import account_bank_statement
-import account_move_line
-import report
+from . import models
+from . import report

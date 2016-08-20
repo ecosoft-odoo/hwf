@@ -19,11 +19,8 @@
 #
 ##############################################################################
 
-from openerp.osv import models, fields, api
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
-
-EUR = 351
-THAI = 142
 
 
 class AccountBankStatement(models.Model):
@@ -51,16 +48,23 @@ class AccountBankStatement(models.Model):
     @api.multi
     @api.depends()
     def _compute_conversion_rate(self):
-        res = {}
+
+        self._cr.execute("select id from res_currency where name = 'EUR';")
+        res = self._cr.dictfetchone()
+        EUR = res['id'] or False
+
+        self._cr.execute("select id from res_currency where name = 'THB';")
+        res = self._cr.dictfetchone()
+        THB = res['id'] or False
+
         for obj in self:
             euro = self.env['res.currency'].browse(EUR)  # EUR
-            thai = self.env['res.currency'].browse(THAI)  # THAI
+            thai = self.env['res.currency'].browse(THB)  # THAI
             c = self._context.copy()
             c.update({'date': obj.date})
             rate = self.env['res.currency'].\
                 with_context(c)._get_conversion_rate(euro, thai)
             obj.conversion_rate = rate
-        return res
 
     @api.model
     def _prepare_move_line_vals(self, st_line, move_id, debit, credit,
@@ -72,8 +76,10 @@ class AccountBankStatement(models.Model):
                                     amount_currency=amount_currency,
                                     account_id=account_id,
                                     partner_id=partner_id)
+        print st_line.description
         res.update({'doc_number': st_line.doc_number,
-                    'description': st_line.description})
+                    'description': st_line.description,
+                    'activity_id': st_line.activity_id.id})
         return res
 
 
@@ -131,13 +137,22 @@ class AccountBankStatementLine(models.Model):
         string='Purpose',
         size=256,
     )
-    quantity = fields.float(
+    quantity = fields.Float(
         string='Quantity',
         default=1.0,
     )
-    unit_price = fields.float(
+    unit_price = fields.Float(
         string='Unit Price',
         default=0.0,
+    )
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+        # TODO: display only activity related to project
+    )
+    account_id = fields.Many2one(
+        related='activity_id.account_id',
+        store=True,
     )
 
     @api.multi
@@ -152,12 +167,12 @@ class AccountBankStatementLine(models.Model):
                     }
 
     @api.multi
-    def onchange_project_line_id(self, project_line_id, account_id):
-        if not project_line_id and not account_id:
+    def onchange_project_line_id(self, project_line_id, activity_id):
+        if not project_line_id and not activity_id:
             return {}
         obj = self.env['npo.project.line']
         # Case 1: If choose project_line, assign account and other info.
-        if project_line_id and not account_id:
+        if project_line_id and not activity_id:
             project_line = obj.browse(project_line_id)
             account = project_line.account_id
             project = project_line.project_id
@@ -170,8 +185,8 @@ class AccountBankStatementLine(models.Model):
                               'obi_id': obi_ids and obi_ids[0] or False,
                               }}
         # Case 2: If choose account_id, get first project line, then get info
-        if account_id and not project_line_id:
-            project_lines = obj.search([('account_id', '=', account_id)])
+        if activity_id and not project_line_id:
+            project_lines = obj.search([('activity_id', '=', activity_id)])
             if project_lines:
                 project_line = project_lines[0]
                 project = project_line.project_id
