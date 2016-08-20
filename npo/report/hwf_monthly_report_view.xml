@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <record id="view_hwf_monthly_report_tree" model="ir.ui.view">
+        <field name="name">hwf.monthly.report.tree</field>
+        <field name="model">hwf.monthly.report</field>
+        <field name="arch" type="xml">
+            <tree colors="blue:move_state == 'draft';black:move_state == 'posted'" create="false" string="Entries Analysis">
+                <field name="date_created" invisible="1"/>
+                <field name="date_maturity" invisible="1"/>
+                <field name="ref" invisible="1"/>
+                <field name="nbr" sum="# of Entries "/>
+                <field name="statement_id"/>
+                <field name="name" string="Ref"/>
+                <field name="partner_id"/>
+				<field name="date"/>          
+				<field name="doc_number"/>    
+				<field name="description"/>      
+                <field name="debit"/>
+                <field name="debit_euro"/>
+                <field name="credit"/>
+                <field name="credit_euro"/>
+                <field name="balance"/>
+                <field name="balance_euro"/>
+                <field name="rate" avg="Exchange Rate"/>
+                <field name="journal_id" invisible="1"/>
+                <field name="move_state" invisible="1"/>
+                <field name="day" invisible="1"/>
+                <field name="month" invisible="1"/>
+                <field name="year"  invisible="1"/>
+                <field name="product_id" invisible="1"/>
+                <field name="product_uom_id" invisible="1"/>
+                <field name="company_id" invisible="1" groups="base.group_multi_company"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="period_id" invisible="1"/>
+                <field name="user_type" invisible="1"/>
+                <field name="type" invisible="1"/>
+                <field name="project_line_id" invisible="1"/>
+                <field name="project_id" invisible="1"/>
+                <field name="project_categ_id" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+    <record id="view_hwf_monthly_report_graph" model="ir.ui.view">
+         <field name="name">hwf.monthly.report.graph</field>
+         <field name="model">hwf.monthly.report</field>
+         <field name="arch" type="xml">
+             <graph string="Monthly Report" type="bar">
+                <field name="project_categ_id"/>
+                <field name="debit" operator="+"/>
+                <field name="credit" operator="+"/>
+                <field name="balance" operator="+"/>
+             </graph>
+         </field>
+    </record>
+    <record id="view_company_analysis_tree" model="ir.ui.view">
+         <field name="name">account.company.analysis.tree</field>
+         <field name="model">hwf.monthly.report</field>
+         <field name="arch" type="xml">
+             <tree string="Company Analysis" >
+                <field name="user_type"/>
+                <field name="debit" />
+                <field name="credit" />
+                <field name="balance" />
+             </tree>
+         </field>
+    </record>
+    <record id="view_hwf_monthly_report_search" model="ir.ui.view">
+        <field name="name">hwf.monthly.report.search</field>
+        <field name="model">hwf.monthly.report</field>
+        <field name="arch" type="xml">
+            <search string="Entries Analysis">
+                <field name="statement_id"/>
+                <field name="project_line_id"/>
+                <field name="project_id"/>
+                <field name="project_categ_id"/>
+                <filter string="This F.Year" name="thisyear" context="{'year':'current_year'}" help="Journal Entries with period in current year"/>
+                <filter string="This Period" name="period" context="{'period':'current_period'}" help="Journal Entries with period in current period"/>
+                <separator/>
+                <filter string="Projects" domain="[('project_line_id', '!=', False)]" help = "Projects Only"/>
+                <filter string="Non Projects" domain="[('project_line_id', '=', False)]" help = "Non Projects Only"/>
+                <group expand="1" string="Group By...">
+                    <filter string="Date" context="{'group_by':'date'}"/>
+                    <filter string="Period" name="group_period" context="{'group_by':'period_id'}"/>
+                    <filter string="Fiscal Year" context="{'group_by':'fiscalyear_id'}"/>
+                    <filter string="Cash Register" context="{'group_by':'statement_id'}"/>
+                    <filter string="Project Category" name="project_categ" context="{'group_by':'project_categ_id'}"/>
+                    <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                    <filter string="Project Line" context="{'group_by':'project_line_id'}"/>
+                    <filter string="Partner" context="{'group_by':'partner_id'}"/>
+                    <filter string="Account" name="account" icon="terp-folder-green" context="{'group_by':'account_id'}"/>
+            	</group>
+            </search>
+        </field>
+    </record>
+    <record id="action_hwf_monthly_report_all" model="ir.actions.act_window">
+        <field name="name">Monthly Report</field>
+        <field name="res_model">hwf.monthly.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,graph</field>
+        <field name="search_view_id" ref="view_hwf_monthly_report_search"/>
+        <field name="view_id" ref="view_hwf_monthly_report_tree"/>
+        <field name="context">{'group_by':[], 'search_default_project_categ':1, 'search_default_project':1, 'search_default_account':1, 'search_default_thisyear':1, 'group_by_no_leaf':0}</field>
+        <field name="help">From this view, have an analysis of your different financial accounts. The document shows your debit and credit taking in consideration some criteria you can choose by using the search tool.</field>
+    </record>
+    <menuitem action="action_hwf_monthly_report_all" id="menu_action_hwf_monthly_report_all"
+        parent="npo.menu_account"
+        groups="account.group_account_manager"
+        sequence="100"/>
+</data>
+</openerp>
