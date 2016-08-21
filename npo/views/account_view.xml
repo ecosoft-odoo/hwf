@@ -29,31 +29,33 @@
 	                            <field name="date" attrs="{'readonly':[('state','!=','draft')]}"  on_change="onchange_date(date, company_id)"/>
 	                            <field name="closing_date" readonly="1"/>
 	                            <field name="period_id" class="oe_inline" />
+	                            <field name="date_start" invisible="1" />
+	                            <field name="date_stop" invisible="1" />
 	                            <field name="currency" invisible="1"/>
 	                        </group>
 	                    </group>
 	                    <notebook>
 	                        <page string="Cash Transactions" attrs="{'invisible': [('state','=','draft')]}">
-	                            <field name="line_ids" context="{'date':date, 'active_id':active_id, 'default_cashtype': 'cashin'}">
+	                            <field name="line_ids" context="{'date':date, 'active_id':active_id, 'default_cash_type': 'cashin'}">
 	                                <tree editable="bottom" string="Statement lines">
 	                                    <field name="sequence" invisible="1"/>
-	                                    <field name="date" on_change="onchange_date(context)" context="{'period_id': parent.period_id}" />
+	                                    <field name="date" />
 					                    <field name="cash_type"/>	
-										<field name="project_line_id" on_change="onchange_project_line_id(project_line_id, False, context)" />                        
-										<field name="obi_id" on_change="onchange_obi_id(obi_id, description)" />
+					                    <field name="project_categ_id" />
+					                    <field name="project_id" domain="[('date_start', '&lt;=', parent.date_start), ('date_stop', '&gt;=', parent.date_stop)]" />
+										<field name="project_line_id" />                        
+										<field name="obi_id" />
 					                    <field name="name" invisible="1"/>
 					                    <field name="obi_dest_id" />
-					                    <field name="doc_number"/>
-					                    <field name="project_categ_id" />
-					                    <field name="project_id" />
-                    					<field name="ref" invisible="1"/>   
+					                    <field name="doc_number" />
+                    					<field name="ref" invisible="1"/>
                 						<field name="partner_id" string="Supplier" />
-					                    <field name="description" on_change="onchange_obi_id(obi_id, description)" required="1"/>
+					                    <field name="description" required="1"/>
 					                    <field name="purpose" invisible="1"/>	                                    
-										<field name="activity_id" on_change="onchange_project_line_id(False, activity_id, context)" />
-										<field name="account_id" />
-					                    <field name="quantity" on_change="onchange_qty_price(cash_type, quantity, unit_price)"/>
-					                    <field name="unit_price" on_change="onchange_qty_price(cash_type, quantity, unit_price)"/>
+										<field name="activity_id" invisible="1"/>
+										<field name="account_id" invisible="1" />
+					                    <field name="quantity" />
+					                    <field name="unit_price" />
 	                                    <field name="amount"/>
 	                                </tree>
 	                            </field>

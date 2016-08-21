@@ -27,7 +27,7 @@ class AccountBankStatement(models.Model):
     _inherit = 'account.bank.statement'
 
     conversion_rate = fields.Float(
-        string='Conversion Rate (EURO)',
+        string='Conversion Rate (€)',
         compute='_compute_conversion_rate',
         digits_compute=dp.get_precision('Account'),
     )
@@ -43,7 +43,16 @@ class AccountBankStatement(models.Model):
         'statement_id',
         string='Statement lines',
         domain=[('cash_type', '=', 'cashout')],
-        states={'confirm': [('readonly', True)]})
+        states={'confirm': [('readonly', True)]},
+    )
+    date_start = fields.Date(
+        string='Period Date Start',
+        related='period_id.date_start',
+    )
+    date_stop = fields.Date(
+        string='Period Date Stop',
+        related='period_id.date_stop',
+    )
 
     @api.multi
     @api.depends()
@@ -96,7 +105,6 @@ class AccountBankStatementLine(models.Model):
         [('cashin', 'In'),
          ('cashout', 'Out')],
         string='In/Out',
-        default=lambda self: self._context.get('default_cashtype'),
     )
     obi_id = fields.Many2one(
         'npo.obi',
@@ -114,19 +122,21 @@ class AccountBankStatementLine(models.Model):
     )
     project_categ_id = fields.Many2one(
         'npo.project.categ',
+        related='project_id.project_categ_id',
         string='Project Categ',
-        required=False,
+        store=True,
+        readonly=True,
     )
     project_id = fields.Many2one(
         'npo.project',
         string='Project',
-        domain="[('project_categ_id','=',project_categ_id)]",
-        required=False,
+        required=True,
     )
     project_line_id = fields.Many2one(
         'npo.project.line',
         string='Line',
-        required=False,
+        required=True,
+        domain="[('project_id', '=', project_id)]",
     )
     description = fields.Char(
         string='Description',
@@ -147,73 +157,39 @@ class AccountBankStatementLine(models.Model):
     )
     activity_id = fields.Many2one(
         'npo.activity',
+        related='project_line_id.activity_id',
         string='Activity',
-        # TODO: display only activity related to project
+        store=True,
+        readonly=True,
     )
     account_id = fields.Many2one(
         related='activity_id.account_id',
         store=True,
+        readonly=True,
     )
 
-    @api.multi
-    def onchange_date(self):
-        if self._context.get('period_id', False):
-            Period = self.env['account.period']
-            p = Period.browse(self._context.get('period_id'))
-            return {'domain': {
-                        'project_line_id': [('date_start', '<=', p.date_start),
-                                            ('date_stop', '>=', p.date_stop)]
-                        }
-                    }
+    @api.onchange('project_id')
+    def _onchange_project_id(self):
+        self.project_line_id = False
 
-    @api.multi
-    def onchange_project_line_id(self, project_line_id, activity_id):
-        if not project_line_id and not activity_id:
-            return {}
-        obj = self.env['npo.project.line']
-        # Case 1: If choose project_line, assign account and other info.
-        if project_line_id and not activity_id:
-            project_line = obj.browse(project_line_id)
-            account = project_line.account_id
-            project = project_line.project_id
-            categ = project_line.project_id.project_categ_id
-            obi_ids = [x.obi_id.id for x in project_line.budget_line]
-            return {'domain': {'obi_id': [('id', 'in', obi_ids)]},
-                    'value': {'account_id': account.id or False,
-                              'project_id': project.id or False,
-                              'project_categ_id': categ.id or False,
-                              'obi_id': obi_ids and obi_ids[0] or False,
-                              }}
-        # Case 2: If choose account_id, get first project line, then get info
-        if activity_id and not project_line_id:
-            project_lines = obj.search([('activity_id', '=', activity_id)])
-            if project_lines:
-                project_line = project_lines[0]
-                project = project_line.project_id
-                categ = project_line.project_id.project_categ_id
-                obi_ids = [x.obi_id.id for x in project_line.budget_line]
-                return {'domain': {'obi_id': [('id', 'in', obi_ids)]},
-                        'value': {'project_line_id': project_line.id or False,
-                                  'project_id': project.id or False,
-                                  'project_categ_id': categ.id or False,
-                                  'obi_id': obi_ids and obi_ids[0] or False,
-                                  }}
-        return {'value': {}}
+    @api.onchange('project_line_id')
+    def _onchange_project_line_id(self):
+        obi_ids = [x.obi_id.id for x in self.project_line_id.budget_line]
+        self.obi_id = obi_ids and obi_ids[0] or False
+        return {'domain': {'obi_id': [('id', 'in', obi_ids)]}}
 
-    @api.multi
-    def onchange_obi_id(self, obi_id, description):
-        if not obi_id:
-            return {'value': {'name': description}}
-        obj_obi = self.env['npo.obi']
-        obi = obj_obi.browse(obi_id)
-        return {'value': {'name': obi.name}}
+    @api.onchange('obi_id', 'description')
+    def _onchange_obi_id(self):
+        if not self.obi_id:
+            self.name = self.description
+        else:
+            self.name = self.obi_id.name
 
-    @api.multi
-    def onchange_qty_price(self, cash_type, quantity, unit_price):
-        quantity = quantity or 0.0
-        unit_price = unit_price or 0.0
-        amount = quantity * unit_price * (cash_type == 'cashin' and 1 or -1)
-        return {'value': {'amount': amount}}
+    @api.onchange('quantity', 'unit_price')
+    def _onchange_qty_price(self):
+        self.amount = (self.quantity *
+                       self.unit_price *
+                       (self.cash_type == 'cashin' and 1 or -1))
 
     @api.model
     def create(self, vals):

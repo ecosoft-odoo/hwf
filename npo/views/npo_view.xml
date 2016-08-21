@@ -218,7 +218,7 @@
                         <group>
 	                        <h3><label string="Periods"/>
 		                        <div>
-		                            <field name="start_period_id" on_change="onchange_start_period_id(start_period_id)" class="oe_inline"/> - 
+		                            <field name="start_period_id" class="oe_inline"/> - 
 		                            <field name="end_period_id" class="oe_inline"/>
 		                        </div></h3>
 	                    </group>            

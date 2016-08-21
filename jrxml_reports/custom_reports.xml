@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="account_bank_statement_hwf" model="ir.actions.report.xml">
+			<field name="string">Cash Register Report</field>
+			<field name="auto">True</field>
+			<field name="model">account.bank.statement</field>
+			<field name="name">Cash Register Report</field>
+			<field name="report_name">account.bank.statement.hwf</field>
+			<field name="report_rml">jrxml_reports/custom_reports/hwf_cash_register.jrxml</field>
+			<field name="menu">True</field>
+			<field name="header">False</field>
+			<field name="jasper_report">True</field>
+			<field name="jasper_output">pdf</field>
+			<field name="copies">1</field>
+		</record>
+	
+		<record id="account_bank_statement_hwf_values" model="ir.values">
+			<field name="name">Cash Register Report</field>
+			<field name="model">account.bank.statement</field>
+			<field name="key2" eval="'client_print_multi'" />
+			<field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(account_bank_statement_hwf)" />
+		</record>	        
+		        
+		<record id="account_bank_statement_hwf_s" model="ir.actions.report.xml">
+			<field name="string">Petty Cash Voucher(s)</field>
+			<field name="auto">True</field>
+			<field name="model">account.bank.statement</field>
+			<field name="name">Petty Cash Voucher(s)</field>
+			<field name="report_name">account.bank.statement.hwf.s</field>
+			<field name="report_rml">jrxml_reports/custom_reports/hwf_petty_cash.jrxml</field>
+			<field name="menu">True</field>
+			<field name="header">False</field>
+			<field name="jasper_report">True</field>
+			<field name="jasper_output">pdf</field>
+			<field name="copies">1</field>
+		</record>
+	
+		<record id="account_bank_statement_hwf_s_values" model="ir.values">
+			<field name="name">Petty Cash Voucher(s)</field>
+			<field name="model">account.bank.statement</field>
+			<field name="key2" eval="'client_print_multi'" />
+			<field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(account_bank_statement_hwf_s)" />
+		</record>	
+	</data>
+</openerp>

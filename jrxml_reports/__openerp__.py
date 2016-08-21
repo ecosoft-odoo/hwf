@@ -19,30 +19,22 @@
 #
 ##############################################################################
 
-
 {
-    'name': 'Non-Profit',
-    'version': '0.1',
-    'category': 'Non-Profit',
-    'description': "Modules for non-profit organization",
-    'author': 'Kitti U.',
+    'name': 'Customized Jasper Reports',
+    'version': '1.0',
+    'category': 'Reports',
+    'summary': '',
+    'description': '',
+    'author': 'kittiu',
     'website': 'http://www.ecosoft.co.th',
-    'depends': ['account',
-                'account_voucher',
-                'web_m2x_options',
-                ],
+    'images': [],
+    'depends': ['jasper_reports'],
     'data': [
-        'security/module_data.xml',
-        'security/npo_security.xml',
-        'security/ir.model.access.csv',
-        'views/npo_view.xml',
-        'report/cash_register_item_report_view.xml',
-        'report/hwf_monthly_report_view.xml',
-        'views/account_view.xml',
+        'custom_reports.xml',
     ],
     'demo': [],
     'test': [],
     'installable': True,
-    'images': [],
+    'active': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

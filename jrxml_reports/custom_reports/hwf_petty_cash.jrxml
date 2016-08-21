@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Billing" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0000000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;line_ids&apos;]"/>
+	<style name="table" lineSpacing="Single">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/kittiu/workspace/openerp_hwf/hwf_addons/jrxml_reports/custom_reports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="Reference-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Reference-name]]></fieldDescription>
+	</field>
+	<field name="Journal_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Journal-journal_id/Journal_Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Responsible-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Total_Transactions-total_entry_encoding" class="java.lang.Float">
+		<fieldDescription><![CDATA[Total_Transactions-total_entry_encoding]]></fieldDescription>
+	</field>
+	<field name="Date-date" class="java.util.Date">
+		<fieldDescription><![CDATA[Date-date]]></fieldDescription>
+	</field>
+	<field name="Closed_On-closing_date" class="java.util.Date">
+		<fieldDescription><![CDATA[Closed_On-closing_date]]></fieldDescription>
+	</field>
+	<field name="Period_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Period-period_id/Period_Name-name]]></fieldDescription>
+	</field>
+	<field name="Date-date2" class="java.util.Date">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Date-date]]></fieldDescription>
+	</field>
+	<field name="OBI-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/OBI-name]]></fieldDescription>
+	</field>
+	<field name="Doc-doc_number" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Doc-doc_number]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Description-description" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/description/name]]></fieldDescription>
+	</field>
+	<field name="Purpose-purpose" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Purpose-purpose]]></fieldDescription>
+	</field>
+	<field name="Name-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Account-account_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.Float">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Quantity-quantity]]></fieldDescription>
+	</field>
+	<field name="Unit_Price-unit_price" class="java.lang.Float">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Unit_Price-unit_price]]></fieldDescription>
+	</field>
+	<field name="Amount-amount" class="java.lang.Float">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Amount-amount]]></fieldDescription>
+	</field>
+	<field name="Starting_Balance-balance_start" class="java.lang.Float">
+		<fieldDescription><![CDATA[Starting_Balance-balance_start]]></fieldDescription>
+	</field>
+	<field name="Last_Closing_Balance-last_closing_balance" class="java.lang.Float">
+		<fieldDescription><![CDATA[Last_Closing_Balance-last_closing_balance]]></fieldDescription>
+	</field>
+	<field name="Computed_Balance-balance_end" class="java.lang.Float">
+		<fieldDescription><![CDATA[Computed_Balance-balance_end]]></fieldDescription>
+	</field>
+	<field name="Code-code" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Account-account_id/Code-code]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="State_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/State-state_id/State_Name-name]]></fieldDescription>
+	</field>
+	<field name="Country_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/Country-country_id/Country_Name-name]]></fieldDescription>
+	</field>
+	<field name="Zip-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/Zip-zip]]></fieldDescription>
+	</field>
+	<field name="Phone-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[Statement_lines-line_ids/Partner-partner_id/Phone-phone]]></fieldDescription>
+	</field>
+	<variable name="Amount-amount_1" class="java.lang.Float" resetType="Group" resetGroup="UniqueID" calculation="Sum">
+		<variableExpression><![CDATA[$F{Amount-amount}]]></variableExpression>
+	</variable>
+	<group name="UniqueID" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{id} + $F{Doc-doc_number}]]></groupExpression>
+		<groupFooter>
+			<band height="31">
+				<printWhenExpression><![CDATA[true]]></printWhenExpression>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement style="table_TD" positionType="FixRelativeToBottom" mode="Transparent" x="475" y="0" width="80" height="28"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Monospaced" isStrikeThrough="false" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Amount-amount_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_TD" positionType="FixRelativeToBottom" mode="Transparent" x="396" y="0" width="80" height="28"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Monospaced" size="10" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+					</textElement>
+					<text><![CDATA[Total (Baht)]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="397" height="29"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Monospaced" isStrikeThrough="false" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["("+(new Scriptlet()).getAmtInWords((new BigDecimal($V{Amount-amount_1}==""?0:$V{Amount-amount_1})).negate().setScale(2).toString(),"THB")+")"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="104" splitType="Stretch">
+			<frame>
+				<reportElement x="318" y="40" width="222" height="61"/>
+				<textField isBlankWhenNull="true">
+					<reportElement x="77" y="3" width="145" height="15"/>
+					<textElement>
+						<font fontName="Monospaced"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Doc-doc_number}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="194" y="6" width="167" height="24"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Monospaced" size="14" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Petty Cash Voucher (s)]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="15" y="40" width="262" height="61"/>
+				<staticText>
+					<reportElement x="0" y="0" width="55" height="15"/>
+					<textElement textAlignment="Left" lineSpacing="Single">
+						<font fontName="Monospaced" size="10" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+					</textElement>
+					<text><![CDATA[Supplier:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="14" width="55" height="15"/>
+					<textElement textAlignment="Left" lineSpacing="Single">
+						<font fontName="Monospaced" size="10" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+					</textElement>
+					<text><![CDATA[Address:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="55" y="14" width="207" height="30"/>
+					<textElement>
+						<font fontName="Monospaced" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[(new Scriptlet()).getAddress($F{Street-street},$F{Street2-street2},$F{City-city},$F{State_Name-name},$F{Country_Name-name},$F{Zip-zip})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="55" y="43" width="207" height="15"/>
+					<textElement>
+						<font fontName="Monospaced" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Phone-phone}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="476" y="0" width="79" height="44"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "hwf_logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="70" y="40" width="207" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" isStrikeThrough="false" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="86" width="55" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Monospaced" size="10" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="194" height="40"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reference-name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement x="395" y="57" width="145" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{Date-date2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="318" y="57" width="78" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Monospaced" size="10" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Payment Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="43" width="78" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Monospaced" size="10" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Reference:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement style="table_TD" mode="Transparent" x="64" y="2" width="224" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="9" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Transparent" x="396" y="2" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="9" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Transparent" x="-1" y="2" width="66" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="9" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Transparent" x="475" y="2" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="9" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Transparent" x="287" y="2" width="110" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="9" isBold="true" pdfFontName="tahomabd.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Account]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TH" stretchType="RelativeToTallestObject" mode="Transparent" x="64" y="0" width="224" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Monospaced" size="8" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Description-description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement style="table_TH" stretchType="RelativeToTallestObject" mode="Transparent" x="-1" y="0" width="66" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Monospaced" size="8" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Quantity-quantity}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement style="table_TH" stretchType="RelativeToTallestObject" mode="Transparent" x="396" y="0" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Monospaced" size="8" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Unit_Price-unit_price}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement style="table_TH" stretchType="RelativeToTallestObject" mode="Transparent" x="475" y="0" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Monospaced" size="8" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Amount-amount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TH" stretchType="RelativeToTallestObject" mode="Transparent" x="287" y="0" width="110" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Monospaced" size="8" pdfFontName="tahoma.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Code-code} + " " + $F{Name-name3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

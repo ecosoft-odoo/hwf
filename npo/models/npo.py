@@ -88,7 +88,8 @@ class NpoProject(models.Model):
     description = fields.Char(
         string='Description',
         size=256,
-        required=False)
+        required=False,
+    )
     project_categ_id = fields.Many2one(
         'npo.project.categ',
         string='Project Category',
@@ -162,14 +163,10 @@ class NpoProject(models.Model):
                      self.with_context(start_period_id=start_period_id,
                                        end_period_id=end_period_id)).copy(vals)
 
-    @api.multi
-    def onchange_start_period_id(self, start_period_id):
-        v = {}
+    @api.onchange('start_period_id')
+    def _onchange_start_period_id(self):
         Period = self.env['account.period']
-        start_period = Period.browse(start_period_id)
-        if start_period_id:
-            v['end_period_id'] = Period.next(start_period, 11)
-        return {'value': v}
+        self.end_period_id = Period.next(self.start_period_id, 11)
 
 
 class NpoProjectLine(models.Model):
@@ -320,18 +317,21 @@ class NpoProjectLineBudgetLine(models.Model):
                  'project_line_id.statement_line.obi_id',
                  'project_line_id.budget_line',
                  'project_line_id.budget_line.budget_alloc')
-    def _compute_budget_used(self, cr, uid, ids, name, args, context):
+    def _compute_budget_used(self):
         for line in self:
             line.budget_used = 0.0
             line.budget_diff = 0.0
-            cr.execute("""
-                select sum(amount) from account_bank_statement_line sl
-                inner join account_bank_statement s on s.id = sl.statement_id
-                where project_line_id = %s
-                and obi_id = %s""", (line.project_line_id.id, line.obi_id.id))
-            result = dict(cr.dictfetchone())
-            line.budget_used = result['sum'] and - result['sum'] or 0.0
-            line.budget_diff = line.budget_alloc - line.budget_used
+            if isinstance(line.project_line_id.id, int) and \
+                    isinstance(line.obi_id.id, int):
+                self._cr.execute("""
+                    select sum(amount) from account_bank_statement_line sl
+                    join account_bank_statement s on s.id = sl.statement_id
+                    where project_line_id = %s
+                    and obi_id = %s""", (line.project_line_id.id,
+                                         line.obi_id.id))
+                result = dict(self._cr.dictfetchone())
+                line.budget_used = result['sum'] and - result['sum'] or 0.0
+                line.budget_diff = line.budget_alloc - line.budget_used
 
     project_line_id = fields.Many2one(
         'npo.project.line',
