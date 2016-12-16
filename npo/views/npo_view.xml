@@ -3,19 +3,16 @@
     <data>
         <!-- Top menu item -->
         <menuitem name="Non-Profit" id="menu_npo" sequence="20" groups="npo.group_npo_user"/>
-        
+
         <!-- Accounting Menu -->
-        <menuitem name="Accounting" parent="menu_npo"
-         	id="menu_account" sequence="10" groups="npo.group_npo_user"/> 
-        
+        <menuitem name="Accounting" parent="menu_npo" id="menu_account" sequence="10" groups="npo.group_npo_user"/>
+
         <!-- Cash Register -->
-        <menuitem id="menu_ngo_cashregister_form_action" action="account.action_view_bank_statement_tree" 
-        		groups="npo.group_npo_user" parent="npo.menu_account" sequence="10"/> 
-        
+        <menuitem id="menu_ngo_cashregister_form_action" action="account.action_view_bank_statement_tree" groups="npo.group_npo_user" parent="npo.menu_account" sequence="10"/>
+
         <!-- Configuration Menu -->
-        <menuitem name="Configuration" parent="menu_npo"
-         	id="menu_configuration" sequence="20" groups="npo.group_npo_account" />
-        
+        <menuitem name="Configuration" parent="menu_npo" id="menu_configuration" sequence="20" groups="npo.group_npo_account"/>
+
         <!-- OBI Form View in Configuration Menu -->
         <record id="view_ngo_obi_form" model="ir.ui.view">
             <field name="name">view.ngo.obi.form</field>
@@ -24,11 +21,11 @@
                 <form string="Donor" version="7.0">
                     <group>
                         <group>
-	                        <field name="name"/>
-	                        <field name="active"/>
+                            <field name="name"/>
+                            <field name="active"/>
                         </group>
                         <group>
-                        	<field name="description"/>
+                            <field name="description"/>
                         </group>
                     </group>
                 </form>
@@ -52,9 +49,9 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new Originator to Benificiary Information
-              </p>
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Originator to Benificiary Information
+                </p>
             </field>
         </record>
         <record id="action_obi_tree" model="ir.actions.act_window.view">
@@ -68,7 +65,7 @@
             <field name="view_id" ref="view_ngo_obi_form"/>
             <field name="act_window_id" ref="ngo_obi_form_action"/>
         </record>
-        <menuitem action="ngo_obi_form_action" id="menu_ngo_obi_form_action" parent="npo.menu_configuration" sequence="10" />
+        <menuitem action="ngo_obi_form_action" id="menu_ngo_obi_form_action" parent="npo.menu_configuration" sequence="10"/>
 
         <!-- Project Category View in Configuration Menu -->
         <record id="view_npo_project_categ_form" model="ir.ui.view">
@@ -78,17 +75,17 @@
                 <form string="Project Category" version="7.0">
                     <group string="Project Category">
                         <group>
-	                        <field name="name"/>
+                            <field name="name"/>
                         </group>
                         <group>
-	                        <field name="active"/>
+                            <field name="active"/>
                         </group>
                     </group>
                     <group>
-                     	<field name="description"/>
+                        <field name="description"/>
                     </group>
                     <group string="Projects under this category">
-                     	<field name="project_ids" context="{'active_id': active_id}" nolabel="1" readonly="1"/>                   
+                        <field name="project_ids" context="{'active_id': active_id}" nolabel="1" readonly="1"/>
                     </group>
                 </form>
             </field>
@@ -111,9 +108,9 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new Project Category
-              </p>
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Project Category
+                </p>
             </field>
         </record>
         <record id="action_project_categ_tree" model="ir.actions.act_window.view">
@@ -127,8 +124,7 @@
             <field name="view_id" ref="view_npo_project_categ_form"/>
             <field name="act_window_id" ref="npo_project_categ_form_action"/>
         </record>
-        <menuitem action="npo_project_categ_form_action" id="menu_npo_project_categ_form_action" parent="npo.menu_configuration" sequence="50" groups="npo.group_npo_account" />
-	
+        <menuitem action="npo_project_categ_form_action" id="menu_npo_project_categ_form_action" parent="npo.menu_configuration" sequence="50" groups="npo.group_npo_account"/>
 
         <!-- Activity -->
         <record id="view_ngo_activity_form" model="ir.ui.view">
@@ -138,13 +134,12 @@
                 <form string="Donor">
                     <group>
                         <group>
-	                        <field name="name"/>
-	                        <field name="active"/>
+                            <field name="name"/>
+                            <field name="active"/>
                         </group>
-                        <group>
-                        	<field name="account_id"/>
-                        </group>
+                        <group></group>
                     </group>
+                    <field name="project_line_ids"></field>
                 </form>
             </field>
         </record>
@@ -154,7 +149,6 @@
             <field name="arch" type="xml">
                 <tree string="Activity">
                     <field name="name"/>
-                    <field name="account_id"/>
                 </tree>
             </field>
         </record>
@@ -165,9 +159,9 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new Activity
-              </p>
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Activity
+                </p>
             </field>
         </record>
         <record id="action_activity_tree" model="ir.actions.act_window.view">
@@ -181,7 +175,7 @@
             <field name="view_id" ref="view_ngo_activity_form"/>
             <field name="act_window_id" ref="ngo_activity_form_action"/>
         </record>
-        <menuitem action="ngo_activity_form_action" id="menu_ngo_activity_form_action" parent="npo.menu_configuration" sequence="22" />
+        <menuitem action="ngo_activity_form_action" id="menu_ngo_activity_form_action" parent="npo.menu_configuration" sequence="22"/>
 
         <!-- Project View in Configuration Menu -->
         <record id="view_npo_project_filter" model="ir.ui.view">
@@ -191,15 +185,15 @@
                 <search string="Search Project Line">
                     <field name="name" string="Name"/>
                     <field name="description" string="Description"/>
-					<filter name="year" string="This Year" domain="[('date_start','&gt;=',time.strftime('%%Y-01-01')), ('date_stop','&lt;=',time.strftime('%%Y-12-31'))]" help="This year projects"/>
+                    <filter name="year" string="This Year" domain="[('date_start','&gt;=',time.strftime('%%Y-01-01')), ('date_stop','&lt;=',time.strftime('%%Y-12-31'))]" help="This year projects"/>
                     <group expand="0" string="Group By...">
                         <filter string="Project Category" context="{'group_by': 'project_categ_id'}"/>
                         <filter string="Start Period" context="{'group_by': 'start_period_id'}"/>
                     </group>
                 </search>
             </field>
-        </record>        
-        
+        </record>
+
         <record id="view_npo_project_form" model="ir.ui.view">
             <field name="name">view.npo.project.form</field>
             <field name="model">npo.project</field>
@@ -207,36 +201,36 @@
                 <form string="Project" version="7.0">
                     <group string="Project">
                         <group>
-	                        <field name="name"/>
-	                        <field name="description"/>
-	                        
+                            <field name="name"/>
+                            <field name="description"/>
                         </group>
                         <group>
-	                        <field name="project_categ_id" required="1" />
-	                        <field name="active"/>
-                        </group>        
+                            <field name="project_categ_id" required="1"/>
+                            <field name="active"/>
+                        </group>
                         <group>
-	                        <h3><label string="Periods"/>
-		                        <div>
-		                            <field name="start_period_id" class="oe_inline"/> - 
-		                            <field name="end_period_id" class="oe_inline"/>
-		                        </div></h3>
-	                    </group>            
-					</group>
+                            <h3><label string="Periods"/>
+                                <div>
+                                    <field name="start_period_id" class="oe_inline"/>
+                                    -
+                                    <field name="end_period_id" class="oe_inline"/>
+                                </div>
+                            </h3>
+                        </group>
+                    </group>
                     <group string="Project Lines under this project">
-                     	<field name="project_line_ids" nolabel="1" >
-                     		<tree editable="bottom" >
-			                    <field name="name"/>
-			                    <field name="description"/>
-			                    <field name="activity_id"/>
-			                    <field name="account_id"/>
-			                    <field name="budget_alloc_total" sum="Total Budget"/>
-								<field name="budget_used_total" sum="Total Budget Used"/>
-								<field name="budget_diff_total" sum="Total Budget Diff"/>
-                     		</tree>
-                     	</field>                   
-                    </group>                
-				</form>
+                        <field name="project_line_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="account_id"/>
+                                <field name="budget_alloc_total" sum="Total Budget"/>
+                                <field name="budget_used_total" sum="Total Budget Used"/>
+                                <field name="budget_diff_total" sum="Total Budget Diff"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
             </field>
         </record>
         <record model="ir.ui.view" id="view_npo_project_tree">
@@ -246,7 +240,7 @@
             <field name="arch" type="xml">
                 <tree string="Project">
                     <field name="name"/>
-                    <field name="project_categ_id" />
+                    <field name="project_categ_id"/>
                     <field name="description"/>
                     <field name="start_period_id"/>
                     <field name="end_period_id"/>
@@ -262,9 +256,9 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new Project
-              </p>
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Project
+                </p>
             </field>
         </record>
         <record id="action_project_tree" model="ir.actions.act_window.view">
@@ -278,8 +272,7 @@
             <field name="view_id" ref="view_npo_project_form"/>
             <field name="act_window_id" ref="npo_project_form_action"/>
         </record>
-        <menuitem action="npo_project_form_action" id="menu_npo_project_form_action" parent="npo.menu_configuration" sequence="60" groups="npo.group_npo_account" />
-	
+        <menuitem action="npo_project_form_action" id="menu_npo_project_form_action" parent="npo.menu_configuration" sequence="60" groups="npo.group_npo_account"/>
 
         <!-- Project Line View in Configuration Menu -->
         <record id="view_npo_project_line_filter" model="ir.ui.view">
@@ -292,7 +285,7 @@
                     <field name="project_id" string="Project"/>
                     <filter string="Budget Short" name="budget_short" domain="[('budget_diff_total','&lt;',0)]"/>
                     <filter string="Budget OK" name="budget_ok" domain="[('budget_diff_total','&gt;',0)]"/>
-					<filter name="year" string="This Year" domain="[('date_start','&gt;=',time.strftime('%%Y-01-01')), ('date_stop','&lt;=',time.strftime('%%Y-12-31'))]" help="This year projects"/>
+                    <filter name="year" string="This Year" domain="[('date_start','&gt;=',time.strftime('%%Y-01-01')), ('date_stop','&lt;=',time.strftime('%%Y-12-31'))]" help="This year projects"/>
                     <group expand="0" string="Group By...">
                         <filter string="Start Period" context="{'group_by': 'start_period_id'}"/>
                         <filter string="Project Category" context="{'group_by': 'project_categ_id'}"/>
@@ -321,40 +314,43 @@
                 <form string="Project Line" version="7.0">
                     <group string="Project Line">
                         <group>
-	                        <field name="name"/>
-	                        <field name="description"/>
-						</group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="project_id" required="1"/>
+                            <field name="active"/>
+                        </group>
                         <group>
-	                        <field name="project_id"  required="1" />
-	                        <field name="activity_id" />                     
-	                        <field name="active"/>
-                        </group>        
+                            <field name="account_id"/>
+                            <field name="activity_ids"/>
+                        </group>
                         <group>
-                        	<h3><label string="Periods"/>
-	                        <div>
-	                            <field name="start_period_id" class="oe_inline"/> - 
-	                            <field name="end_period_id" class="oe_inline"/>
-	                        </div></h3>
-                        </group>            
-					</group>
-					<group string="Budget">
-		                <field name="budget_line" nolabel="1">
-		                    <tree string="Budget Lines" editable="bottom">
-		                        <field name="obi_id" />
-		                        <field name="budget_alloc" />
-		                        <field name="budget_used" />
-		                        <field name="budget_diff" />
-		                    </tree>
-		                </field>
-		            </group>
-		            <group class="oe_subtotal_footer oe_right" colspan="2" name="sum_total">
-		                <field name="budget_alloc_total"/>
-		                <field name="budget_used_total"/>
-		                <div class="oe_subtotal_footer_separator oe_inline">
-		                    <label for="budget_diff_total" />
-		                </div>
-		                <field name="budget_diff_total" nolabel="1" class="oe_subtotal_footer_separator"/>
-		            </group>		
+                            <h3><label string="Periods"/>
+                                <div>
+                                    <field name="start_period_id" class="oe_inline"/>
+                                    -
+                                    <field name="end_period_id" class="oe_inline"/>
+                                </div>
+                            </h3>
+                        </group>
+                    </group>
+                    <group string="Budget">
+                        <field name="budget_line" nolabel="1">
+                            <tree string="Budget Lines" editable="bottom">
+                                <field name="obi_id"/>
+                                <field name="budget_alloc"/>
+                                <field name="budget_used"/>
+                                <field name="budget_diff"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sum_total">
+                        <field name="budget_alloc_total"/>
+                        <field name="budget_used_total"/>
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="budget_diff_total"/>
+                        </div>
+                        <field name="budget_diff_total" nolabel="1" class="oe_subtotal_footer_separator"/>
+                    </group>
                 </form>
             </field>
         </record>
@@ -365,15 +361,15 @@
             <field name="arch" type="xml">
                 <tree colors="red:budget_diff_total&lt;0" string="Project Line">
                     <field name="name"/>
-                   	<field name="project_categ_id"/>
-                   	<field name="project_id"/>
+                    <field name="project_categ_id"/>
+                    <field name="project_id"/>
                     <field name="description"/>
                     <field name="start_period_id"/>
                     <field name="end_period_id"/>
                     <field name="budget_alloc_total" sum="Total Budget"/>
-					<field name="budget_used_total" sum="Total Budget Used"/>
-					<field name="budget_diff_total" sum="Total Budget Diff"/>
-                    <field name="activity_id"/>
+                    <field name="budget_used_total" sum="Total Budget Used"/>
+                    <field name="budget_diff_total" sum="Total Budget Diff"/>
+                    <field name="account_id"/>
                     <field name="date_start" invisible="1"/>
                     <field name="date_stop" invisible="1"/>
                 </tree>
@@ -387,9 +383,9 @@
             <field name="view_mode">tree,form,graph</field>
             <field name="search_view_id" ref="view_npo_project_line_filter"/>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new Project Line
-              </p>
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Project Line
+                </p>
             </field>
         </record>
         <record id="action_project_line_tree" model="ir.actions.act_window.view">
@@ -403,16 +399,13 @@
             <field name="view_id" ref="view_npo_project_line_form"/>
             <field name="act_window_id" ref="npo_project_line_form_action"/>
         </record>
-        <menuitem action="npo_project_line_form_action" id="menu_npo_project_line_form_action" parent="npo.menu_configuration" sequence="70" groups="npo.group_npo_account" />
+        <menuitem action="npo_project_line_form_action" id="menu_npo_project_line_form_action" parent="npo.menu_configuration" sequence="70" groups="npo.group_npo_account"/>
 
+        <!-- Suppliers Menu -->
+        <menuitem id="menu_procurement_management_supplier_name" name="Suppliers" parent="npo.menu_configuration" action="base.action_partner_supplier_form" sequence="20" groups="npo.group_npo_account"/>
 
-		<!-- Suppliers Menu -->
-	    <menuitem id="menu_procurement_management_supplier_name" name="Suppliers"
-	        parent="npo.menu_configuration"
-	        action="base.action_partner_supplier_form" sequence="20" groups="npo.group_npo_account" />
-	    
-	    <!-- Accounts Menu -->
-	    <menuitem action="account.action_account_form" id="menu_action_account_form" parent="npo.menu_configuration" sequence="30" groups="npo.group_npo_account" />
-	
-	</data>
+        <!-- Accounts Menu -->
+        <menuitem action="account.action_account_form" id="menu_action_account_form" parent="npo.menu_configuration" sequence="30" groups="npo.group_npo_account"/>
+
+    </data>
 </openerp>

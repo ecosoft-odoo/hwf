@@ -85,10 +85,13 @@ class AccountBankStatement(models.Model):
                                     amount_currency=amount_currency,
                                     account_id=account_id,
                                     partner_id=partner_id)
-        print st_line.description
         res.update({'doc_number': st_line.doc_number,
                     'description': st_line.description,
-                    'activity_id': st_line.activity_id.id})
+                    'activity_id': st_line.activity_id.id,
+                    'project_line_id': st_line.project_line_id.id,
+                    'project_id': st_line.project_id.id,
+                    'project_categ_id': st_line.project_categ_id.id,
+                    })
         return res
 
 
@@ -138,6 +141,11 @@ class AccountBankStatementLine(models.Model):
         required=True,
         domain="[('project_id', '=', project_id)]",
     )
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+        domain="[('project_line_ids', 'in', project_line_id)]",
+    )
     description = fields.Char(
         string='Description',
         size=256,
@@ -155,15 +163,8 @@ class AccountBankStatementLine(models.Model):
         string='Unit Price',
         default=0.0,
     )
-    activity_id = fields.Many2one(
-        'npo.activity',
-        related='project_line_id.activity_id',
-        string='Activity',
-        store=True,
-        readonly=True,
-    )
     account_id = fields.Many2one(
-        related='activity_id.account_id',
+        related='project_line_id.account_id',
         store=True,
         readonly=True,
     )

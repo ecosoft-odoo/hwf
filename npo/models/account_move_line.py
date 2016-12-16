@@ -39,3 +39,18 @@ class AccountMoveLine(models.Model):
         string='Activity',
         required=False,
     )
+    project_id = fields.Many2one(
+        'npo.project',
+        string='Project',
+        required=False,
+    )
+    project_line_id = fields.Many2one(
+        'npo.project.line',
+        string='Project Line',
+        required=False,
+    )
+    project_categ_id = fields.Many2one(
+        'npo.project',
+        string='Project Category',
+        required=False,
+    )

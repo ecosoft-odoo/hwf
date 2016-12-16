@@ -224,17 +224,12 @@ class NpoProjectLine(models.Model):
         string='Statement Lines',
         readonly=True,
     )
-    activity_id = fields.Many2one(
+    activity_ids = fields.Many2many(
         'npo.activity',
+        'project_line_activity_rel',
+        'project_line_id', 'activity_id',
         string='Activity',
-        required=True,
-    )
-    account_id = fields.Many2one(
-        'account.account',
-        related='activity_id.account_id',
-        string='Account',
-        store=True,
-        readonly=True,
+        required=False,
     )
     active = fields.Boolean(
         string='Active',
@@ -265,6 +260,11 @@ class NpoProjectLine(models.Model):
         string='Stop date',
         store=True,
         readonly=True,
+    )
+    account_id = fields.Many2one(
+        'account.account',
+        string='Account',
+        required=True,
     )
     _sql_constraints = [
         ('uniq_name', 'unique(name, project_id)',
@@ -381,14 +381,16 @@ class NpoActivity(models.Model):
         size=256,
         required=True,
     )
-    account_id = fields.Many2one(
-        'account.account',
-        string='Account',
-        required=True,
-    )
     active = fields.Boolean(
         string='Active',
         default=True,
+    )
+    project_line_ids = fields.Many2many(
+        'npo.project.line',
+        'project_line_activity_rel',
+        'activity_id', 'project_line_id',
+        string='Project Lines',
+        required=False,
     )
     _sql_constraints = [
         ('uniq_name', 'unique(name)', "The name of this OBI must be unique !"),

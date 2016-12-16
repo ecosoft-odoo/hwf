@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data>
-    <record id="view_cash_register_item_report_tree" model="ir.ui.view">
-        <field name="name">view.cash.register.item.report.tree</field>
-        <field name="model">cash.register.item.report</field>
-        <field name="arch" type="xml">
-            <tree create="false" string="Cash Register Item">
-                <field name="period_id" invisible="1"/>
-                <field name="date"/>
-                <field name="year" invisible="1"/>
-                <field name="month" invisible="1"/>
-                <field name="day" invisible="1"/>
-                <field name="cash_type"/>	
-				<field name="project_line_id"/>                        
-				<field name="obi_id"/>
-                <field name="name" invisible="1"/>
-                <field name="obi_dest_id"/>
-                <field name="doc_number"/>
-                <field name="project_categ_id" invisible="1"/>
-                <field name="project_id" />
-				<field name="ref" invisible="1"/>   
-				<field name="partner_id" string="Supplier" />
-                <field name="description" />
-                <field name="purpose" invisible="1"/>	                                    
-				<field name="activity_id"/>                                    
-				<field name="account_id"/>
-                <field name="quantity"/>
-                <field name="unit_price"/>
-                <field name="amount" sum="Total Amount"/>
-            </tree>
-        </field>
-    </record>
+    <data>
+        <record id="view_cash_register_item_report_tree" model="ir.ui.view">
+            <field name="name">view.cash.register.item.report.tree</field>
+            <field name="model">cash.register.item.report</field>
+            <field name="arch" type="xml">
+                <tree create="false" string="Cash Register Item">
+                    <field name="period_id" invisible="1"/>
+                    <field name="date"/>
+                    <field name="year" invisible="1"/>
+                    <field name="month" invisible="1"/>
+                    <field name="day" invisible="1"/>
+                    <field name="cash_type"/>
+                    <field name="project_line_id"/>
+                    <field name="obi_id"/>
+                    <field name="name" invisible="1"/>
+                    <field name="obi_dest_id"/>
+                    <field name="doc_number"/>
+                    <field name="project_categ_id" invisible="1"/>
+                    <field name="project_id"/>
+                    <field name="ref" invisible="1"/>
+                    <field name="partner_id" string="Supplier"/>
+                    <field name="description"/>
+                    <field name="purpose" invisible="1"/>
+                    <field name="activity_id"/>
+                    <field name="account_id"/>
+                    <field name="quantity"/>
+                    <field name="unit_price"/>
+                    <field name="amount" sum="Total Amount"/>
+                </tree>
+            </field>
+        </record>
 
-    <record id="view_cash_register_item_report_graph" model="ir.ui.view">
-         <field name="name">view.cash.register.item.report.graph</field>
-         <field name="model">cash.register.item.report</field>
-         <field name="arch" type="xml">
-             <graph string="Cash Register Item" type="bar">
-                 <field name="description"/>
-                 <field name="amount"/>
-             </graph>
-         </field>
-    </record>
+        <record id="view_cash_register_item_report_graph" model="ir.ui.view">
+            <field name="name">view.cash.register.item.report.graph</field>
+            <field name="model">cash.register.item.report</field>
+            <field name="arch" type="xml">
+                <graph string="Cash Register Item" type="bar">
+                    <field name="description"/>
+                    <field name="amount"/>
+                </graph>
+            </field>
+        </record>
 
-    <record id="view_cash_register_item_report_search" model="ir.ui.view">
-        <field name="name">view.cash.register.item.report.search</field>
-        <field name="model">cash.register.item.report</field>
-        <field name="arch" type="xml">
-            <search string="Cash Register Item">
-                <field name="date"/>
-                <filter string="Year" name="year" domain="[('date','&lt;=', time.strftime('%%Y-%%m-%%d')),('date','&gt;=',time.strftime('%%Y-01-01'))]" help="year"/>
-                <separator/>
-                <field name="obi_id"/>
-                <field name="project_id"/>
-                <field name="description"/>
-                <separator/>
-                <field name="description"/>
-                <field name="doc_number"/>
-                <group expand="1" string="Group By...">
-                    <filter string="Period" name='period_id' context="{'group_by':'period_id'}"/>
-                    <filter string="In/Out" name='cash_type' context="{'group_by':'cash_type'}"/>
-                    <filter string="Line" name='project_line_id' context="{'group_by':'project_line_id'}"/>
-                    <filter string="Project Category" name='project_categ_id' context="{'group_by':'project_categ_id'}"/>
-                    <filter string="Project" name='project_id' context="{'group_by':'project_id'}"/>
-                    <filter string="Donor" name='obi_id' context="{'group_by':'obi_id'}"/>
-                    <filter string="Rpt Donor" name='obi_dest_id' context="{'group_by':'obi_dest_id'}"/>
-                    <filter string="Supplier" name='partner_id' context="{'group_by':'partner_id'}"/>
-                    <filter string="Activity" name='activity_id' context="{'group_by':'activity_id'}"/>
-                    <filter string="Account" name='account_id' context="{'group_by':'account_id'}"/>
-                    <filter string="Day" name="day" icon="terp-go-today" context="{'group_by':'day'}" help="Group by Oder Date"/>
-                    <filter string="Month" name="month" icon="terp-go-month" context="{'group_by':'month'}" help="Group by month of Order Date"/>
-                    <filter string="Year" name="group_year" icon="terp-go-year" context="{'group_by':'year'}" help="Group by year of Order Date"/>
-                </group>
-            </search>
-        </field>
-    </record>
+        <record id="view_cash_register_item_report_search" model="ir.ui.view">
+            <field name="name">view.cash.register.item.report.search</field>
+            <field name="model">cash.register.item.report</field>
+            <field name="arch" type="xml">
+                <search string="Cash Register Item">
+                    <field name="date"/>
+                    <filter string="Year" name="year" domain="[('date','&lt;=', time.strftime('%%Y-%%m-%%d')),('date','&gt;=',time.strftime('%%Y-01-01'))]" help="year"/>
+                    <separator/>
+                    <field name="obi_id"/>
+                    <field name="project_id"/>
+                    <field name="description"/>
+                    <separator/>
+                    <field name="description"/>
+                    <field name="doc_number"/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Period" name='period_id' context="{'group_by':'period_id'}"/>
+                        <filter string="In/Out" name='cash_type' context="{'group_by':'cash_type'}"/>
+                        <filter string="Line" name='project_line_id' context="{'group_by':'project_line_id'}"/>
+                        <filter string="Project Category" name='project_categ_id' context="{'group_by':'project_categ_id'}"/>
+                        <filter string="Project" name='project_id' context="{'group_by':'project_id'}"/>
+                        <filter string="Donor" name='obi_id' context="{'group_by':'obi_id'}"/>
+                        <filter string="Rpt Donor" name='obi_dest_id' context="{'group_by':'obi_dest_id'}"/>
+                        <filter string="Supplier" name='partner_id' context="{'group_by':'partner_id'}"/>
+                        <filter string="Activity" name='activity_id' context="{'group_by':'activity_id'}"/>
+                        <filter string="Account" name='account_id' context="{'group_by':'account_id'}"/>
+                        <filter string="Day" name="day" icon="terp-go-today" context="{'group_by':'day'}" help="Group by Oder Date"/>
+                        <filter string="Month" name="month" icon="terp-go-month" context="{'group_by':'month'}" help="Group by month of Order Date"/>
+                        <filter string="Year" name="group_year" icon="terp-go-year" context="{'group_by':'year'}" help="Group by year of Order Date"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
-    <record id="action_cash_register_item_report" model="ir.actions.act_window">
-        <field name="name">Cash Register Items</field>
-        <field name="res_model">cash.register.item.report</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,graph</field>
-        <field name="context">{'search_default_period_id': 1, 'group_by':['period_id'], 'group_by_no_leaf':0,}</field>
-        <field name="search_view_id" ref="view_cash_register_item_report_search"/>
-    </record>
+        <record id="action_cash_register_item_report" model="ir.actions.act_window">
+            <field name="name">Cash Register Items</field>
+            <field name="res_model">cash.register.item.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+            <field name="context">{'search_default_period_id': 1, 'group_by':['period_id'], 'group_by_no_leaf':0,}</field>
+            <field name="search_view_id" ref="view_cash_register_item_report_search"/>
+        </record>
 
-    <menuitem action="action_cash_register_item_report" id="menu_action_cash_register_item_report" parent="npo.menu_account" sequence="50"/>
+        <menuitem action="action_cash_register_item_report" id="menu_action_cash_register_item_report" parent="npo.menu_account" sequence="50"/>
 
-</data>
+    </data>
 </openerp>
