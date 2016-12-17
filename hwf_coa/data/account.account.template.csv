@@ -1,0 +1,246 @@
+id,name,code,parent_id/id,type,user_type/id,reconcile
+0,Chart of Account – HWF,0,,View,account.data_account_type_root_view,FALSE
+1,Statement of Financial Position,1,0,View,account.data_account_type_root_view,FALSE
+1000,Assets - สินทรัพย์,1000,1,View,account.data_account_type_view,FALSE
+1100,Current Assets - สินทรัพย์หมุนเวียน,1100,1000,View,account.data_account_type_view,FALSE
+1110,Cash and Cash equivalents - เงินสดและรายการเทียบเท่าเงินสด,1110,1100,View,account.data_account_type_view,FALSE
+1111,Petty Cash - เงินสด,1111,1110,View,account.data_account_type_view,FALSE
+1112,Petty Cash HWFTH - เงินสด HWFTH,1112,1110,Liquidity,account.data_account_type_cash,FALSE
+1113,Petty Cash HoGI - เงินสด HoGI,1113,1110,Liquidity,account.data_account_type_cash,FALSE
+1120,Bank – Saving Accounts - เงินฝากออมทรัพย์,1120,1100,View,account.data_account_type_view,FALSE
+1121,KBank HWFTH -212-2-67133-2 เงินฝากออมทรัพย์ธนาคารกสิกรไทย,1121,1120,Liquidity,account.data_account_type_bank,FALSE
+1122,KBank HoGI -212-2-83678-1 เงินฝากออมทรัพย์ธนาคารกสิกรไทย,1122,1120,Liquidity,account.data_account_type_bank,FALSE
+1123,KBank ThaiHealthFund (สสส)-212-2-82793-6 เงินฝากออมทรัพย์ธนาคารกสิกรไทย,1123,1120,Liquidity,account.data_account_type_bank,FALSE
+1125,Bank in Transit - บัญชีธนาคารระหว่างทาง,1125,1120,Regular,account.data_account_type_bank,FALSE
+1140,Trade and Other Receivables - ลูกหนี้การค้าและตั๋วเงินรับ,1140,1100,View,account.data_account_type_view,FALSE
+1141,Trade Accounts Receivable - ลูกหนี้การค้า,1141,1140,Receivable,account.data_account_type_receivable,TRUE
+1142,Allowance for Doubtful Account - ค่าเผื่อหนี้สงสัยจะสูญ,1142,1140,Regular,account.data_account_type_receivable,FALSE
+1150,Other Current Assets - สินทรัพย์หมุนเวียนอื่น,1150,1100,View,account.data_account_type_view,FALSE
+1151,Advance to others เงินทดรองจ่าย/เงินให้ยืม,1151,1150,Regular,account.data_account_type_current_assets,FALSE
+1152,Credit HWFTH to HoGI - เงินให้ HoGI ยืม,1152,1150,Regular,account.data_account_type_current_assets,FALSE
+1153,Credit HoG to HWFTH - เงินให้ HWFTH ยืม,1153,1150,Regular,account.data_account_type_current_assets,FALSE
+1154,Microcredit,1154,1150,Regular,account.data_account_type_current_assets,FALSE
+1155,Advance to Staff - เงินทดรองจ่ายเจ้าหน้าที่,1155,1150,Regular,account.data_account_type_current_assets,FALSE
+1156,Advance to SC - เงินทดรองจ่าย SC,1156,1150,Regular,account.data_account_type_current_assets,FALSE
+1200,Non Current Assets สินทรัพย์ไม่หมุนเวียน,1200,1000,View,account.data_account_type_view,FALSE
+1210,"Property, Plant and Equipment ที่ดิน อาคารและอุปกรณ์ - สุทธิ",1210,1200,View,account.data_account_type_view,FALSE
+1211,Land ที่ดิน,1211,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1212,Buildings อาคาร,1212,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1213,Construction Work in Progress งานระหว่างก่อสร้าง,1213,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1214,Accum.Depre. Buildings ค่าเสื่อมราคาสะสม-อาคาร,1214,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1215,Office Equipment อุปกรณ์สำนักงาน,1215,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1216,Accum.Depre. Office Equipment ค่าเสื่อมราคาสะสม-อุปกรณ์สำนักงาน,1216,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1217,Vehicle ยานพาหนะ,1217,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1218,Accum.Depre. Vehicle ค่าเสื่อมราคาสะสม-ยานพาหนะ,1218,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1219,Machine เครื่องจักร,1219,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1220,Accum.Depre. Machine ค่าเสื่อมราคาสะสม-เครื่องจักร,1220,1210,Regular,account.data_account_type_fixed_assets,FALSE
+1230,Deposit เงินประกัน,1230,1200,View,account.data_account_type_view,FALSE
+1231,Deposit เงินประกัน,1231,1230,Regular,account.data_account_account_type_non_current_assets,FALSE
+2000,Liabilities - หนี้สิน,2000,1,View,account.data_account_type_view,FALSE
+2100,Current Liabilities - หนี้สินหมุนเวียน,2100,2000,View,account.data_account_type_view,FALSE
+2110,Trade and Other Payables - เจ้าหนี้การค้าและตั๋วเงินจ่าย,2110,2100,View,account.data_account_type_view,FALSE
+2111,Accounts Payable Trade - เจ้าหนี้การค้า,2111,2110,payable,account.data_account_type_payable,TRUE
+2120,Other Current Liabilities - หนี้สินหมุนเวียนอื่น,2120,2100,View,account.data_account_type_view,FALSE
+2121,Accrued Expenses - ค่าใช้จ่ายค้างจ่าย,2121,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2122,Accrued Expenses – Withholding Tax ภาษีหัก ณ ที่จ่ายค้างจ่าย,2122,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2123,Accrued Expenses – Social Security Fund ประกันสังคมค้างจ่าย,2123,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2124,Accrued Expenses – Annual Tax ภาษีเงินได้ค้างจ่าย ภงด.55,2124,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2125,Accrued Expenses – Audit Fee ค่าตรวจสอบบัญชีค้างจ่าย,2125,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2126,Accrued Expenses – Others ค่าใช้จ่ายค้างจ่ายอื่นๆ,2126,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2127,Advance from others เงินยืม,2127,2120,Regular,account.data_account_type_current_liabilities,FALSE
+2128,Advance from HWFTH เงินยืมจาก HWFTH,2128,2120,Regular,account.data_account_type_current_liabilities,FALSE
+3000,Net Assets - เงินทุนคงเหลือ,3000,1,View,account.data_account_type_view,FALSE
+3100,Capital ทุน,3100,3000,Regular,account.data_account_type_fund_balance,FALSE
+3200,Excess Revenue over Expenses - รายได้สูงกว่าค่าใช้จ่าย,3200,3000,Regular,account.data_account_type_fund_balance,FALSE
+3300,Permanently restricted net assets - รายได้สูงกว่าค่าใช้จ่ายสะสม,3300,3000,Regular,account.data_account_type_revenue_over_(under)_expenditure,FALSE
+2,Statement of Activities,2,0,View,account.data_account_type_root_view,FALSE
+4000,Revenues - รายได้,4000,2,View,account.data_account_type_view,FALSE
+4100,Income by Donate - รายได้ เงินบริจาค,4100,4000,View,account.data_account_type_view,FALSE
+4110,Income by Donate - Education - รายได้เงินบริจาค การศึกษา,4110,4100,Regular,account.data_account_type_revenue,FALSE
+4111,Income by donate/ Project-School & Dormitory - บริจาคโครงการโรงเรียนและหอพัก,4111,4110,Regular,account.data_account_type_revenue,FALSE
+4112,Income by donate/ Project-Education - บริจาคโครงการการศึกษา,4112,4110,Regular,account.data_account_type_revenue,FALSE
+4113,Income by donate/ Project-Training - บริจาคโครงการอบรม,4113,4110,Regular,account.data_account_type_revenue,FALSE
+4114,Income by donate/ NFE-NFPE การศึกษานอกระบบ,4114,4110,Regular,account.data_account_type_revenue,FALSE
+4115,Income by donate/ Project-School Emergency - บริจาคโครงการศึกษาฉุกเฉิน,4115,4110,Regular,account.data_account_type_revenue,FALSE
+4116,Income by donate/Scholarship - เงินบริจาค ทุนการศึกษา,4116,4110,Regular,account.data_account_type_revenue,FALSE
+4120,Income by Donate - Youth - รายได้เงินบริจาคงานเยาวชน,4120,4100,View,account.data_account_type_view,FALSE
+4121,Income by donate/Ray of Youth - เงินบริจาค โครงการเยาวชน ROY,4121,4120,Regular,account.data_account_type_revenue,FALSE
+4130,Income by Donate - Food & Health & Medical - รายได้เงินบริจาค โครงการสุขภาพและสาธารณสุข,4130,4100,View,account.data_account_type_view,FALSE
+4131,Income by donate/ Project Food - เงินบริจาค โครงการอาหาร,4131,4130,Regular,account.data_account_type_revenue,FALSE
+4132,Income by donate/ Project-Health & Medical - เงินบริจาคโครงการสุขภาพและสาธารณสุข,4132,4130,Regular,account.data_account_type_revenue,FALSE
+4133,Income by donate/ Project Oldy - เงินบริจาคโครงการเพื่อผู้สูงอายุ,4133,4130,Regular,account.data_account_type_revenue,FALSE
+4140,Income by Donate - Community & Emergency - รายได้เงินบริจาค งานชุมชนและฉุกเฉิน,4140,4100,View,account.data_account_type_view,FALSE
+4141,Income by donate/Community - เงินบริจาค โครงการสนับสนุนชุมชน,4141,4140,Regular,account.data_account_type_revenue,FALSE
+4142,Income by donate/ Emergency - เงินบริจาค โครงการฉุกเฉิน บรรเทาทุกข์,4142,4140,Regular,account.data_account_type_revenue,FALSE
+4150,Income by Donate - Sewing workshop - รายได้เงินบริจาค โครงการตัดเย็บเสื้อผ้า,4150,4100,View,account.data_account_type_view,FALSE
+4151,Income by donate/Sewing workshop - เงินบริจาค โครงการตัดเย็บ,4151,4150,Regular,account.data_account_type_revenue,FALSE
+4160,Income by Donate - General Donation - รายได้เงินบริจาคทั่วไป,4160,4100,View,account.data_account_type_view,FALSE
+4161,Income by donate/ General Donation - เงินบริจาค กิจกรรมทั่วไป,4161,4160,Regular,account.data_account_type_revenue,FALSE
+4162,Income by donate/Donation / contribution to project management - เงินบริจาค สมทบจัดการทั่วไป,4162,4160,Regular,account.data_account_type_revenue,FALSE
+4163,Income by donate/ Child Protection : เงินบริจาค โครงการปกป้องคุ้มครองเด็ก,4163,4160,Regular,account.data_account_type_revenue,FALSE
+4170,Income by donate/ Sub Grant - เงินบริจาค โครงการอุดหนุน,4170,4100,View,account.data_account_type_view,FALSE
+4171,Income by donate/ Sub Grant - เงินบริจาค โครงการอุดหนุน,4171,4170,Regular,account.data_account_type_revenue,FALSE
+4200,Income from Sales - รายได้จากการขาย,4200,4000,View,account.data_account_type_view,FALSE
+4211,Income from sale/Sale Happy Tailor 2% - รายได้จากการขายสินค้า ตัดเย็บ 2%,4211,4200,Regular,account.data_account_type_revenue,FALSE
+4212,Income from sale/Sale Happy Tailor 10% - รายได้จากการขายสินค้า ตัดเย็บ 10%,4212,4200,Regular,account.data_account_type_revenue,FALSE
+4213,Income from sale/Sale Agriculture 2% - รายได้จากการขายสินค้า เกษตร 2%,4213,4200,Regular,account.data_account_type_revenue,FALSE
+4214,Income from sale/Sale Agriculture 10% - รายได้จากการขายสินค้า เกษตร 10%,4214,4200,Regular,account.data_account_type_revenue,FALSE
+4215,Income from sale/Sale Food 2% - รายได้จากการขายอาหาร 2%,4215,4200,Regular,account.data_account_type_revenue,FALSE
+4216,Income from sale/Sale Food 10% - รายได้จากการขายอาหาร 10%,4216,4200,Regular,account.data_account_type_revenue,FALSE
+4300,Other income - รายได้อื่นๆ,4300,4000,View,account.data_account_type_view,FALSE
+4311,Other income/Bank Interest - รายได้ ดอกเบี้ยธนาคาร,4311,4300,Regular,account.data_account_type_revenue,FALSE
+4312,Other income/Service 10% - รายได้ ให้บริการต่างๆ 10%,4312,4300,Regular,account.data_account_type_revenue,FALSE
+5000,Expenses - รายจ่าย,5000,2,View,account.data_account_type_view,FALSE
+5300,Staff Stipends,5300,5000,View,account.data_account_type_view,FALSE
+5301,Staff Stipends,5301,5300,Regular,account.data_account_type_expense,FALSE
+5302,Staff Overtime,5302,5300,Regular,account.data_account_type_expense,FALSE
+5303,Staff Bonus,5303,5300,Regular,account.data_account_type_expense,FALSE
+5304,Volunteer / Intern support,5304,5300,Regular,account.data_account_type_expense,FALSE
+5305,Consultants / Advisors / External Trainers,5305,5300,Regular,account.data_account_type_expense,FALSE
+5310,Social Security,5310,5300,Regular,account.data_account_type_expense,FALSE
+5311,ID / Passport Support,5311,5300,Regular,account.data_account_type_expense,FALSE
+5312,Work Permit - International,5312,5300,Regular,account.data_account_type_expense,FALSE
+5313,Visa-International,5313,5300,Regular,account.data_account_type_expense,FALSE
+5314,Work Permit - Local,5314,5300,Regular,account.data_account_type_expense,FALSE
+5315,Visa-Local,5315,5300,Regular,account.data_account_type_expense,FALSE
+5316,Medical - International,5316,5300,Regular,account.data_account_type_expense,FALSE
+5317,Medical - Local,5317,5300,Regular,account.data_account_type_expense,FALSE
+5318,Flights - International,5318,5300,Regular,account.data_account_type_expense,FALSE
+5330,Per Diem,5330,5300,Regular,account.data_account_type_expense,FALSE
+5331,Travel Allowance,5331,5300,Regular,account.data_account_type_expense,FALSE
+5332,Staff of the Year awards,5332,5300,Regular,account.data_account_type_expense,FALSE
+5333,Social Security / Funeral / Birth / Marriage,5333,5300,Regular,account.data_account_type_expense,FALSE
+5400,Travel,5400,5000,View,account.data_account_type_view,FALSE
+5401,Air Travel - International,5401,5400,Regular,account.data_account_type_expense,FALSE
+5402,Air Travel - Domestic,5402,5400,Regular,account.data_account_type_expense,FALSE
+5403,Road / Train / Boat travel,5403,5400,Regular,account.data_account_type_expense,FALSE
+5404,Fuel,5404,5400,Regular,account.data_account_type_expense,FALSE
+5405,Travel visa,5405,5400,Regular,account.data_account_type_expense,FALSE
+5406,Vehicle (Insurance / tax),5406,5400,Regular,account.data_account_type_expense,FALSE
+5407,Vehicle (rent),5407,5400,Regular,account.data_account_type_expense,FALSE
+5500,Supplies,5500,5000,View,account.data_account_type_view,FALSE
+5501,Stationary - office,5501,5500,Regular,account.data_account_type_expense,FALSE
+5502,Printer / Photo copier ink,5502,5500,Regular,account.data_account_type_expense,FALSE
+5503,Print media,5503,5500,Regular,account.data_account_type_expense,FALSE
+5504,Photo copy,5504,5500,Regular,account.data_account_type_expense,FALSE
+5505,Cleaning supplies,5505,5500,Regular,account.data_account_type_expense,FALSE
+5506,Staff - uniform,5506,5500,Regular,account.data_account_type_expense,FALSE
+5510,"Rice , Meat and ingredient",5510,5500,Regular,account.data_account_type_expense,FALSE
+5511,Cooking gas,5511,5500,Regular,account.data_account_type_expense,FALSE
+5512,Refreshments,5512,5500,Regular,account.data_account_type_expense,FALSE
+5513,Drinking Water,5513,5500,Regular,account.data_account_type_expense,FALSE
+5600,Equipment,5600,5000,View,account.data_account_type_view,FALSE
+5601,Machinery Computer,5601,5600,Regular,account.data_account_type_expense,FALSE
+5602,Furniture,5602,5600,Regular,account.data_account_type_expense,FALSE
+5603,Office equipment,5603,5600,Regular,account.data_account_type_expense,FALSE
+5604,Equipment and Machinery Maintenance,5604,5600,Regular,account.data_account_type_expense,FALSE
+5605,Vehicle (purchase),5605,5600,Regular,account.data_account_type_expense,FALSE
+5606,Vehicle (maintenance),5606,5600,Regular,account.data_account_type_expense,FALSE
+5607,Camera / VDO camera / TV,5607,5600,Regular,account.data_account_type_expense,FALSE
+5608,Projector,5608,5600,Regular,account.data_account_type_expense,FALSE
+5609,Sewing machinery,5609,5600,Regular,account.data_account_type_expense,FALSE
+5650,Facilities,5650,5000,View,account.data_account_type_view,FALSE
+5651,Building Construction,5651,5650,Regular,account.data_account_type_expense,FALSE
+5652,Building and Facility Maintenance,5652,5650,Regular,account.data_account_type_expense,FALSE
+5653,Health and Safety equipment,5653,5650,Regular,account.data_account_type_expense,FALSE
+5654,Land purchase,5654,5650,Regular,account.data_account_type_expense,FALSE
+5655,Security,5655,5650,Regular,account.data_account_type_expense,FALSE
+5660,Rent,5660,5000,View,account.data_account_type_view,FALSE
+5661,Rent,5661,5660,Regular,account.data_account_type_expense,FALSE
+5662,Electricity,5662,5660,Regular,account.data_account_type_expense,FALSE
+5663,Used water,5663,5660,Regular,account.data_account_type_expense,FALSE
+5664,Toilet Pump / Sewage,5664,5660,Regular,account.data_account_type_expense,FALSE
+5665,Garbage Collection,5665,5660,Regular,account.data_account_type_expense,FALSE
+5670,Communication,5670,5000,View,account.data_account_type_view,FALSE
+5671,Phone,5671,5670,Regular,account.data_account_type_expense,FALSE
+5672,Internet,5672,5670,Regular,account.data_account_type_expense,FALSE
+5673,Phone credit,5673,5670,Regular,account.data_account_type_expense,FALSE
+5674,Post,5674,5670,Regular,account.data_account_type_expense,FALSE
+5675,Website / Social media,5675,5670,Regular,account.data_account_type_expense,FALSE
+5700,Activities,5700,5000,View,account.data_account_type_view,FALSE
+5701,Workshop / Training,5701,5700,Regular,account.data_account_type_expense,FALSE
+5702,TOT Training - Youth Leaders,5702,5700,Regular,account.data_account_type_expense,FALSE
+5703,TOT Training - Community Leaders,5703,5700,Regular,account.data_account_type_expense,FALSE
+5704,TOT Training - Teachers,5704,5700,Regular,account.data_account_type_expense,FALSE
+5705,Training - Youth Leaders,5705,5700,Regular,account.data_account_type_expense,FALSE
+5706,Training - Community Leaders,5706,5700,Regular,account.data_account_type_expense,FALSE
+5707,Training - Teachers,5707,5700,Regular,account.data_account_type_expense,FALSE
+5708,Courses,5708,5700,Regular,account.data_account_type_expense,FALSE
+5709,Vocational Training,5709,5700,Regular,account.data_account_type_expense,FALSE
+5710,Trainer Accomodation,5710,5700,Regular,account.data_account_type_expense,FALSE
+5711,Trainer Travel,5711,5700,Regular,account.data_account_type_expense,FALSE
+5720,Special Days / Ceremonies,5720,5000,View,account.data_account_type_view,FALSE
+5721,Special Days / Ceremonies,5721,5720,Regular,account.data_account_type_expense,FALSE
+5722,Student Fellowship,5722,5720,Regular,account.data_account_type_expense,FALSE
+5723,Campaigns,5723,5720,Regular,account.data_account_type_expense,FALSE
+5724,Campaign - Child Protection / Child Rights,5724,5720,Regular,account.data_account_type_expense,FALSE
+5725,Community Events,5725,5720,Regular,account.data_account_type_expense,FALSE
+5726,Community Road Show,5726,5720,Regular,account.data_account_type_expense,FALSE
+5730,Child Protection - Support,5730,5000,View,account.data_account_type_view,FALSE
+5731,Child Protection - Support,5731,5730,Regular,account.data_account_type_expense,FALSE
+5732,Community Visits,5732,5730,Regular,account.data_account_type_expense,FALSE
+5733,Study Tours,5733,5730,Regular,account.data_account_type_expense,FALSE
+5734,Seminars,5734,5730,Regular,account.data_account_type_expense,FALSE
+5735,Coordination Meetings,5735,5730,Regular,account.data_account_type_expense,FALSE
+5736,Network Meetings,5736,5730,Regular,account.data_account_type_expense,FALSE
+5737,Home Visits,5737,5730,Regular,account.data_account_type_expense,FALSE
+5738,Scholarship support,5738,5730,Regular,account.data_account_type_expense,FALSE
+5739,Emergency Support,5739,5730,Regular,account.data_account_type_expense,FALSE
+5750,Teacher Stipend,5750,5000,View,account.data_account_type_view,FALSE
+5751,Head Teacher & School Director,5751,5750,Regular,account.data_account_type_expense,FALSE
+5752,Senior Teacher,5752,5750,Regular,account.data_account_type_expense,FALSE
+5753,Junior Teacher,5753,5750,Regular,account.data_account_type_expense,FALSE
+5754,Specific Teachers,5754,5750,Regular,account.data_account_type_expense,FALSE
+5755,Other School staff,5755,5750,Regular,account.data_account_type_expense,FALSE
+5756,Volunteers,5756,5750,Regular,account.data_account_type_expense,FALSE
+5760,Supplies,5760,5000,View,account.data_account_type_view,FALSE
+5761,Stationary,5761,5760,Regular,account.data_account_type_expense,FALSE
+5762,Stationary - text books,5762,5760,Regular,account.data_account_type_expense,FALSE
+5763,Teaching / Training equipment,5763,5760,Regular,account.data_account_type_expense,FALSE
+5764,Sports equipment,5764,5760,Regular,account.data_account_type_expense,FALSE
+5765,Musical equipment,5765,5760,Regular,account.data_account_type_expense,FALSE
+5766,Art supplies & equipment,5766,5760,Regular,account.data_account_type_expense,FALSE
+5767,Uniform - student,5767,5760,Regular,account.data_account_type_expense,FALSE
+5768,Uniform - teacher,5768,5760,Regular,account.data_account_type_expense,FALSE
+5769,T-Shirts,5769,5760,Regular,account.data_account_type_expense,FALSE
+5770,Training Materials,5770,5760,Regular,account.data_account_type_expense,FALSE
+5771,Translation,5771,5760,Regular,account.data_account_type_expense,FALSE
+5772,Health Supplies,5772,5760,Regular,account.data_account_type_expense,FALSE
+5773,First Aid Kits / supplies,5773,5760,Regular,account.data_account_type_expense,FALSE
+5774,Personal Hygiene supplies,5774,5760,Regular,account.data_account_type_expense,FALSE
+5775,Prizes / Trainee gifts,5775,5760,Regular,account.data_account_type_expense,FALSE
+5776,Food,5776,5760,Regular,account.data_account_type_expense,FALSE
+5777,Nutrition,5777,5760,Regular,account.data_account_type_expense,FALSE
+5780,Transportation,5780,5000,View,account.data_account_type_view,FALSE
+5781,Vehicle (rent),5781,5780,Regular,account.data_account_type_expense,FALSE
+5782,Vehicle (maintenance),5782,5780,Regular,account.data_account_type_expense,FALSE
+5783,Vehicle (insurance / tax),5783,5780,Regular,account.data_account_type_expense,FALSE
+5784,Vehicle (fuel),5784,5780,Regular,account.data_account_type_expense,FALSE
+5785,Vehicle (other),5785,5780,Regular,account.data_account_type_expense,FALSE
+5786,Fuel,5786,5780,Regular,account.data_account_type_expense,FALSE
+5790,Facilities,5790,5000,View,account.data_account_type_view,FALSE
+5791,Rent,5791,5790,Regular,account.data_account_type_expense,FALSE
+5792,Electricity,5792,5790,Regular,account.data_account_type_expense,FALSE
+5793,Water,5793,5790,Regular,account.data_account_type_expense,FALSE
+5794,Toilet Pump / Sewage / Garbage Collection,5794,5790,Regular,account.data_account_type_expense,FALSE
+5795,Phone,5795,5790,Regular,account.data_account_type_expense,FALSE
+5796,Internet,5796,5790,Regular,account.data_account_type_expense,FALSE
+5797,Building Construction,5797,5790,Regular,account.data_account_type_expense,FALSE
+5798,Furniture,5798,5790,Regular,account.data_account_type_expense,FALSE
+5799,Facility Rental,5799,5790,Regular,account.data_account_type_expense,FALSE
+5850,Development workshops / training,5850,5000,View,account.data_account_type_view,FALSE
+5851,Development workshops / training,5851,5850,Regular,account.data_account_type_expense,FALSE
+5852,Conferences,5852,5850,Regular,account.data_account_type_expense,FALSE
+5860,Publications,5860,5000,View,account.data_account_type_view,FALSE
+5861,Media releases,5861,5860,Regular,account.data_account_type_expense,FALSE
+5862,Brochures / Leaflets,5862,5860,Regular,account.data_account_type_expense,FALSE
+5863,Signs / Boards,5863,5860,Regular,account.data_account_type_expense,FALSE
+5864,Gifts / Donations,5864,5860,Regular,account.data_account_type_expense,FALSE
+5865,Hosting visitors,5865,5860,Regular,account.data_account_type_expense,FALSE
+5870,M&E costs,5870,5000,View,account.data_account_type_view,FALSE
+5871,M&E costs,5871,5870,Regular,account.data_account_type_expense,FALSE
+5872,Programme / Project evaluations,5872,5870,Regular,account.data_account_type_expense,FALSE
+5900,Other Organisational Expenses,5900,5000,View,account.data_account_type_view,FALSE
+5901,Audit,5901,5900,Regular,account.data_account_type_expense,FALSE
+5902,Bank fee,5902,5900,Regular,account.data_account_type_expense,FALSE
+5903,Fundraising,5903,5900,Regular,account.data_account_type_expense,FALSE

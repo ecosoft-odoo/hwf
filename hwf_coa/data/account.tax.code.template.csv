@@ -1,0 +1,9 @@
+id,name,code,parent_id/id
+base.account_tax_code_hwf,HWF,,
+base.account_tax_code_wht_tax,Withholding Tax,,base.account_tax_code_hwf
+base.account_tax_code_personal_wht,Personal WHT,,base.account_tax_code_wht_tax
+base.account_tax_code_corporate_wht,Corporate WHT,,base.account_tax_code_wht_tax
+base.account_tax_code_income_wht,Income WHT,,base.account_tax_code_wht_tax
+base.account_tax_code_personal_wht_1,Personal WHT 1%,PND3,base.account_tax_code_personal_wht
+base.account_tax_code_cooperate_wht_1,Corporate WHT 1%,PND53,base.account_tax_code_corporate_wht
+base.account_tax_code_income_wht_1,Income WTH 1%,,base.account_tax_code_income_wht
