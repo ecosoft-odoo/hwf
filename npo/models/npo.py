@@ -128,9 +128,17 @@ class NpoProject(models.Model):
         default=True,
     )
     _sql_constraints = [
-        ('uniq_name', 'unique(name, start_period_id)',
+        ('uniq_name', 'unique(name, project_categ_id, start_period_id)',
          "The project name and period duration must be unique!"),
     ]
+
+    @api.multi
+    def name_get(self):
+        result = []
+        for rec in self:
+            result.append(
+                (rec.id, "[%s] %s" % (rec.project_categ_id.name, rec.name)))
+        return result
 
     @api.model
     def _estimate_next_period(self):
