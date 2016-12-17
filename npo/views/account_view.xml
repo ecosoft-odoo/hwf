@@ -42,9 +42,9 @@
                                         <field name="date"/>
                                         <field name="cash_type"/>
                                         <field name="project_categ_id"/>
-                                        <field name="project_id" domain="[('date_start', '&lt;=', parent.date_start), ('date_stop', '&gt;=', parent.date_stop)]"/>
-                                        <field name="project_line_id"/>
-                                        <field name="activity_id" />
+                                        <field name="project_id" required="1" domain="[('date_start', '&lt;=', parent.date_start), ('date_stop', '&gt;=', parent.date_stop)]"/>
+                                        <field name="project_line_id" required="1"/>
+                                        <field name="activity_id"/>
                                         <field name="obi_id"/>
                                         <field name="name" invisible="1"/>
                                         <field name="obi_dest_id"/>
@@ -53,7 +53,7 @@
                                         <field name="partner_id" string="Supplier"/>
                                         <field name="description" required="1"/>
                                         <field name="purpose" invisible="1"/>
-                                        <field name="account_id" invisible="1"/>
+                                        <field name="account_id" invisible="0"/>
                                         <field name="quantity"/>
                                         <field name="unit_price"/>
                                         <field name="amount"/>
@@ -104,5 +104,33 @@
             </field>
         </record>
 
+        <record id="view_bank_statement_form" model="ir.ui.view">
+            <field name="name">view.bank.statement.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='ref']" position="before">
+                    <field name="account_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_form" model="ir.ui.view">
+            <field name="name">view.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page/field/tree/field[@name='name']" position="before">
+                    <field name="project_categ_id"/>
+                    <field name="project_id" />
+                    <field name="project_line_id" />
+                    <field name="activity_id"/>
+                    <field name="obi_id"/>
+                    <field name="obi_dest_id"/>
+                    <field name="doc_number"/>
+                    <field name="description"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </openerp>

@@ -19,12 +19,22 @@
 #
 ##############################################################################
 
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
+    obi_id = fields.Many2one(
+        'npo.obi',
+        string='Donor',
+        required=False,
+    )
+    obi_dest_id = fields.Many2one(
+        'npo.obi',
+        string='Rpt Donor',
+        required=False
+    )
     doc_number = fields.Char(
         string='Ref#',
         required=False,
@@ -34,10 +44,12 @@ class AccountMoveLine(models.Model):
         size=256,
         required=False,
     )
-    activity_id = fields.Many2one(
-        'npo.activity',
-        string='Activity',
-        required=False,
+    project_categ_id = fields.Many2one(
+        'npo.project.categ',
+        related='project_id.project_categ_id',
+        string='Project Categ',
+        store=True,
+        readonly=True,
     )
     project_id = fields.Many2one(
         'npo.project',
@@ -46,11 +58,30 @@ class AccountMoveLine(models.Model):
     )
     project_line_id = fields.Many2one(
         'npo.project.line',
-        string='Project Line',
+        string='Line',
         required=False,
+        domain="[('project_id', '=', project_id)]",
     )
-    project_categ_id = fields.Many2one(
-        'npo.project',
-        string='Project Category',
-        required=False,
+    activity_id = fields.Many2one(
+        'npo.activity',
+        string='Activity',
+        domain="[('project_line_ids', 'in', project_line_id)]",
     )
+
+    @api.onchange('project_id')
+    def _onchange_project_id(self):
+        self.project_line_id = False
+
+    @api.onchange('project_line_id')
+    def _onchange_project_line_id(self):
+        obi_ids = [x.obi_id.id for x in self.project_line_id.budget_line]
+        self.obi_id = obi_ids and obi_ids[0] or False
+        self.account_id = self.project_line_id.account_id
+        return {'domain': {'obi_id': [('id', 'in', obi_ids)]}}
+
+    @api.onchange('obi_id', 'description')
+    def _onchange_obi_id(self):
+        if not self.obi_id:
+            self.name = self.description
+        else:
+            self.name = self.obi_id.name

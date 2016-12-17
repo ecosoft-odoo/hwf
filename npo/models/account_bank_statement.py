@@ -133,12 +133,12 @@ class AccountBankStatementLine(models.Model):
     project_id = fields.Many2one(
         'npo.project',
         string='Project',
-        required=True,
+        required=False,
     )
     project_line_id = fields.Many2one(
         'npo.project.line',
         string='Line',
-        required=True,
+        required=False,
         domain="[('project_id', '=', project_id)]",
     )
     activity_id = fields.Many2one(
@@ -163,11 +163,6 @@ class AccountBankStatementLine(models.Model):
         string='Unit Price',
         default=0.0,
     )
-    account_id = fields.Many2one(
-        related='project_line_id.account_id',
-        store=True,
-        readonly=True,
-    )
 
     @api.onchange('project_id')
     def _onchange_project_id(self):
@@ -177,6 +172,7 @@ class AccountBankStatementLine(models.Model):
     def _onchange_project_line_id(self):
         obi_ids = [x.obi_id.id for x in self.project_line_id.budget_line]
         self.obi_id = obi_ids and obi_ids[0] or False
+        self.account_id = self.project_line_id.account_id
         return {'domain': {'obi_id': [('id', 'in', obi_ids)]}}
 
     @api.onchange('obi_id', 'description')
