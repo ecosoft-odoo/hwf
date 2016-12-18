@@ -272,10 +272,11 @@ class NpoProjectLine(models.Model):
     account_id = fields.Many2one(
         'account.account',
         string='Account',
+        domain=[('type', '!=', 'view')],
         required=True,
     )
     _sql_constraints = [
-        ('uniq_name', 'unique(name, project_id)',
+        ('uniq_name', 'unique(name, project_id, start_period_id)',
          "The name of this project line must be unique !"),
     ]
 
