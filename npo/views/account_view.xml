@@ -112,6 +112,9 @@
                 <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='ref']" position="before">
                     <field name="account_id" domain="[('type', '!=', 'view')]"/>
                 </xpath>
+                <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='name']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
             </field>
         </record>
 
@@ -125,8 +128,8 @@
                 </xpath>
                 <xpath expr="/form/notebook/page/field/tree/field[@name='name']" position="before">
                     <field name="project_categ_id" invisible="1"/>
-                    <field name="project_id" />
-                    <field name="project_line_id" />
+                    <field name="project_id"/>
+                    <field name="project_line_id"/>
                     <field name="activity_id"/>
                     <field name="obi_id"/>
                     <field name="obi_dest_id"/>
