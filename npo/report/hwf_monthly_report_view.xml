@@ -91,8 +91,8 @@
                         <filter string="Project Line" context="{'group_by':'project_line_id'}"/>
                         <filter string="Partner" context="{'group_by':'partner_id'}"/>
                         <filter string="Activity" context="{'group_by':'activity_id'}"/>
-                        <filter string="OBI" context="{'group_by':'obi_id'}"/>
-                        <filter string="OBI Dest." context="{'group_by':'obi_dest_id'}"/>
+                        <filter string="Donor" context="{'group_by':'obi_id'}"/>
+                        <filter string="Donor Dest." context="{'group_by':'obi_dest_id'}"/>
                         <filter string="Account" name="account" icon="terp-folder-green" context="{'group_by':'account_id'}"/>
                     </group>
                 </search>
