@@ -88,6 +88,7 @@
                         <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
                         <filter string="Project Line" context="{'group_by':'project_line_id'}"/>
                         <filter string="Partner" context="{'group_by':'partner_id'}"/>
+                        <filter string="Activity" context="{'group_by':'activity_id'}"/>
                         <filter string="Account" name="account" icon="terp-folder-green" context="{'group_by':'account_id'}"/>
                     </group>
                 </search>
