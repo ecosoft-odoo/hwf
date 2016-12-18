@@ -97,7 +97,7 @@ class AccountBankStatement(models.Model):
 
 class AccountBankStatementLine(models.Model):
     _inherit = 'account.bank.statement.line'
-    _order = 'id'
+    _order = 'id desc'
 
     name = fields.Char(
         string='OBI',
