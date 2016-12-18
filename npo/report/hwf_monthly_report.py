@@ -233,6 +233,16 @@ class HWFMonthlyReport(models.Model):
         string='Project Category',
         readonly=True,
     )
+    obi_id = fields.Many2one(
+        'npo.obi',
+        string='Donor',
+        required=False,
+    )
+    obi_dest_id = fields.Many2one(
+        'npo.obi',
+        string='Rpt Donor',
+        required=False
+    )
     doc_number = fields.Char(
         string='Ref#',
         readonly=True,
@@ -335,9 +345,11 @@ class HWFMonthlyReport(models.Model):
                 l.credit / rate as credit_euro,
                 (l.debit-l.credit) / rate as balance_euro,
                 cr.rate,
-                project_line_id,
-                project_id,
-                project_categ_id,
+                l.project_line_id,
+                l.project_id,
+                l.project_categ_id,
+                l.obi_id,
+                l.obi_dest_id,
                 l.doc_number,
                 l.description
             from
@@ -345,15 +357,6 @@ class HWFMonthlyReport(models.Model):
                 left join account_account a on (l.account_id = a.id)
                 left join account_move am on (am.id=l.move_id)
                 left join account_period p on (am.period_id=p.id)
-                -- left join (select np.start_period_id, np.end_period_id,
-                -- npl.account_id, npl.id project_line_id, np.id project_id,
-                -- npc.id project_categ_id
-                -- from npo_project_line npl
-                --  join npo_project np on (npl.project_id = np.id)
-                --  join npo_project_categ npc on (np.project_categ_id = npc.id
-                -- )) npo
-                --  ON (npo.account_id = l.account_id and l.period_id between
-                --  npo.start_period_id and npo.end_period_id)
                 JOIN res_currency_rate cr ON (cr.currency_id = %s)
                 WHERE
                     cr.id IN (SELECT id

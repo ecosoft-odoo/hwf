@@ -91,6 +91,8 @@ class AccountBankStatement(models.Model):
                     'project_line_id': st_line.project_line_id.id,
                     'project_id': st_line.project_id.id,
                     'project_categ_id': st_line.project_categ_id.id,
+                    'obi_id': st_line.obi_id.id,
+                    'obi_dest_id': st_line.obi_dest_id.id,
                     })
         return res
 
