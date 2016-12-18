@@ -42,8 +42,8 @@
                                         <field name="date"/>
                                         <field name="cash_type"/>
                                         <field name="project_categ_id" invisible="1"/>
-                                        <field name="project_id" required="1" domain="[('date_start', '&lt;=', parent.date_start), ('date_stop', '&gt;=', parent.date_stop)]"/>
-                                        <field name="project_line_id" required="1"/>
+                                        <field name="project_id" required="0" domain="[('date_start', '&lt;=', parent.date_start), ('date_stop', '&gt;=', parent.date_stop)]"/>
+                                        <field name="project_line_id" required="0"/>
                                         <field name="activity_id"/>
                                         <field name="obi_id"/>
                                         <field name="name" invisible="1"/>
