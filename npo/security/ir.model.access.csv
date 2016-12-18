@@ -40,3 +40,4 @@ access_npo_project_npo_user,npo.project npo user,npo.model_npo_project,npo.group
 access_npo_project_line_npo_user,npo.project.line npo user,npo.model_npo_project_line,npo.group_npo_user,1,1,1,1
 access_npo_project_line_budget_line_npo_user,npo.project.line.budget.line npo user,npo.model_npo_project_line_budget_line,npo.group_npo_user,1,1,1,1
 access_cash_register_item_report,cash.register.item.report npo user,npo.model_cash_register_item_report,npo.group_npo_user,1,1,1,1
+access_hwf_monthly_report,access_hwf_monthly_report,npo.model_hwf_monthly_report,account.group_account_manager,1,1,1,1
