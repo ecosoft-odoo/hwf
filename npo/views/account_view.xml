@@ -37,7 +37,7 @@
                         <notebook>
                             <page string="Cash Transactions" attrs="{'invisible': [('state','=','draft')]}">
                                 <field name="line_ids" context="{'date':date, 'active_id':active_id, 'default_cash_type': 'cashin'}">
-                                    <tree editable="top" string="Statement lines">
+                                    <tree editable="bottom" string="Statement lines">
                                         <field name="sequence" invisible="1"/>
                                         <field name="date"/>
                                         <field name="cash_type"/>

@@ -160,7 +160,7 @@ class NpoProject(models.Model):
             end_period_id = Period.next(project.end_period_id, num_periods+1)
         return start_period_id, end_period_id
 
-    @api.model
+    @api.one
     def copy(self, vals):
         vals.update(name=_("%s (copy)") % (self.name or ''))
         # Set default period to be next period, plus number of period.
@@ -276,7 +276,8 @@ class NpoProjectLine(models.Model):
         required=True,
     )
     _sql_constraints = [
-        ('uniq_name', 'unique(name, project_id, start_period_id)',
+        ('uniq_name',
+         'unique(name, project_id, project_categ_id, start_period_id)',
          "The name of this project line must be unique !"),
     ]
 
