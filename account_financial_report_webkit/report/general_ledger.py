@@ -238,8 +238,8 @@ class GeneralLedgerWebkit(report_sxw.rml_parse, CommonReportHeaderWebkit):
             return []
         res = self._get_move_line_datas(
             move_line_ids,
-            extra_select=extra_params['extra_sql_select'],
-            extra_join=extra_params['extra_sql_join'])
+            extra_select=extra_params.get('extra_sql_select', ''),
+            extra_join=extra_params.get('extra_sql_join', ''))
         # computing counter part is really heavy in term of ressouces
         # consuption looking for a king of SQL to help me improve it
         move_ids = [x.get('move_id') for x in res]
