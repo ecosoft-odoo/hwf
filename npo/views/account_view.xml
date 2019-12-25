@@ -46,7 +46,7 @@
                                         <field name="project_line_id" required="0"/>
                                         <field name="activity_id"/>
                                         <field name="obi_id"/>
-                                        <field name="name" invisible="1"/>
+                                        <field name="name" invisible="0" required="1"/>
                                         <field name="obi_dest_id"/>
                                         <field name="doc_number"/>
                                         <field name="ref" invisible="1"/>
