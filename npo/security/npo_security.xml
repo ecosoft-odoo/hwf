@@ -1,16 +1,43 @@
 <?xml version="1.0"?>
 <openerp>
 	<data>
+	    <record model="res.groups" id="group_npo_report">
+	        <field name="name">Report</field>
+	        <field name="category_id" ref="module_category_npo"/>
+       		<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	    </record>
 	    <record model="res.groups" id="group_npo_user">
 	        <field name="name">User</field>
 	        <field name="category_id" ref="module_category_npo"/>
-       		<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+       		<field name="implied_ids" eval="[(4, ref('group_npo_report'))]"/>
 	    </record>
 	    <record model="res.groups" id="group_npo_account">
 	        <field name="name">Manager</field>
 	        <field name="category_id" ref="module_category_npo"/>
 	        <field name="implied_ids" eval="[(4, ref('group_npo_user'))]"/>
 	    </record>
+
+        <record model="ir.rule" id="rule_npo_model_npo_project_line">
+            <field name="name">Project Lines by Categ Login</field>
+            <field name="model_id" ref="npo.model_npo_project_line"/>
+            <field name="domain_force">[('project_categ_id.name','=',user.name)]</field>
+            <field name="groups" eval="[(4, ref('npo.group_npo_report'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <record model="ir.rule" id="rule_npo_model_npo_project_categ">
+            <field name="name">Project Category by Categ Login</field>
+            <field name="model_id" ref="npo.model_npo_project_categ"/>
+            <field name="domain_force">[('name','=',user.name)]</field>
+            <field name="groups" eval="[(4, ref('npo.group_npo_report'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
 	</data>
 </openerp>
 

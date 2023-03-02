@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <!-- Top menu item -->
-        <menuitem name="Non-Profit" id="menu_npo" sequence="20" groups="npo.group_npo_user"/>
+        <menuitem name="Non-Profit" id="menu_npo" sequence="20" groups="npo.group_npo_report"/>
 
         <!-- Accounting Menu -->
         <menuitem name="Accounting" parent="menu_npo" id="menu_account" sequence="10" groups="npo.group_npo_user"/>
@@ -15,6 +15,9 @@
 
         <!-- Configuration Menu -->
         <menuitem name="Configuration" parent="menu_npo" id="menu_configuration" sequence="20" groups="npo.group_npo_account"/>
+
+        <!-- Report Menu -->
+        <menuitem name="Report" id="menu_report" parent="mail.mail_feeds_main" sequence="100" groups="npo.group_npo_report"/>
 
         <!-- OBI Form View in Configuration Menu -->
         <record id="view_ngo_obi_form" model="ir.ui.view">
@@ -410,6 +413,9 @@
 
         <!-- Accounts Menu -->
         <menuitem action="account.action_account_form" id="menu_action_account_form" parent="npo.menu_configuration" sequence="30" groups="npo.group_npo_account"/>
+
+        <!-- For Report Group -->
+        <menuitem action="npo_project_line_form_action" id="menu_npo_project_line_form_action_report" parent="npo.menu_report" sequence="70" groups="npo.group_npo_report"/>
 
     </data>
 </openerp>

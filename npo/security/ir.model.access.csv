@@ -42,3 +42,25 @@ access_npo_project_line_budget_line_npo_user,npo.project.line.budget.line npo us
 access_cash_register_item_report,cash.register.item.report npo user,npo.model_cash_register_item_report,npo.group_npo_user,1,1,1,1
 access_hwf_monthly_report,access_hwf_monthly_report,npo.model_hwf_monthly_report,account.group_account_manager,1,1,1,1
 access_npo_activity,access_npo_activity,npo.model_npo_activity,account.group_account_manager,1,1,1,1
+access_account_account_npo_report,account.account npo user,account.model_account_account,npo.group_npo_report,1,0,0,0
+access_account_move_npo_report,account.move npo user,account.model_account_move,npo.group_npo_report,1,0,0,0
+access_res_partner_npo_report,res.partner npo user,base.model_res_partner,npo.group_npo_report,1,0,0,0
+access_account_bank_statement_npo_report,account.bank.statement npo user,account.model_account_bank_statement,npo.group_npo_report,1,0,0,0
+access_account_bank_statement_line_npo_report,account.bank.statement.line npo user,account.model_account_bank_statement_line,npo.group_npo_report,1,0,0,0
+access_account_journal_npo_report,account.journal npo user,account.model_account_journal,npo.group_npo_report,1,0,0,0
+access_account_cashbox_line_npo_report,account.cashbox.line npo user,account.model_account_cashbox_line,npo.group_npo_report,1,0,0,0
+access_account_peroid_npo_report,account.period npo user,account.model_account_period,npo.group_npo_report,1,0,0,0
+access_account_journal_cashbox_line_npo_report,account.journal.cashbox.line npo user,account.model_account_journal_cashbox_line,npo.group_npo_report,1,0,0,0
+access_account_move_line_npo_report,account.move.line npo user,account.model_account_move_line,npo.group_npo_report,1,0,0,0
+access_ir_property_npo_report,ir.property npo user,base.model_ir_property,npo.group_npo_report,1,0,0,0
+access_account_account_type_npo_report,account.account.type npo user,account.model_account_account_type,npo.group_npo_report,1,0,0,0
+access_account_analytic_line_npo_report,account.analytic.line npo user,account.model_account_analytic_line,npo.group_npo_report,1,0,0,0
+access_account_voucher_npo_report,account.voucher npo user,account_voucher.model_account_voucher,npo.group_npo_report,1,0,0,0
+access_account_voucher_line_npo_report,account.voucher.line npo user,account_voucher.model_account_voucher_line,npo.group_npo_report,1,0,0,0
+access_npo_obi_npo_report,npo.obi npo user,npo.model_npo_obi,npo.group_npo_report,1,0,0,0
+access_npo_project_categ_npo_report,npo.project_categ npo user,npo.model_npo_project_categ,npo.group_npo_report,1,0,0,0
+access_npo_project_npo_report,npo.project npo user,npo.model_npo_project,npo.group_npo_report,1,0,0,0
+access_npo_project_line_npo_report,npo.project.line npo user,npo.model_npo_project_line,npo.group_npo_report,1,0,0,0
+access_npo_project_line_budget_line_npo_report,npo.project.line.budget.line npo user,npo.model_npo_project_line_budget_line,npo.group_npo_report,1,0,0,0
+access_cash_register_item_report_report,cash.register.item.report npo user,npo.model_cash_register_item_report,npo.group_npo_report,1,0,0,0
+access_hwf_monthly_report_report,access_hwf_monthly_report,npo.model_hwf_monthly_report,npo.group_npo_report,1,0,0,0

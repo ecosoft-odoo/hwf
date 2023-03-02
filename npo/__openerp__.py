@@ -39,6 +39,7 @@
         'report/cash_register_item_report_view.xml',
         'report/hwf_monthly_report_view.xml',
         'views/account_view.xml',
+        'report/hwf_monthly_report_wizard.xml',
     ],
     'demo': [],
     'test': [],

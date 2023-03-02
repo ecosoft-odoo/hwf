@@ -76,8 +76,8 @@
                     <field name="project_line_id"/>
                     <field name="project_id"/>
                     <field name="project_categ_id"/>
-                    <filter string="This F.Year" name="thisyear" context="{'year':'current_year'}" help="Journal Entries with period in current year"/>
-                    <filter string="This Period" name="period" context="{'period':'current_period'}" help="Journal Entries with period in current period"/>
+                    <!-- <filter string="This F.Year" name="thisyear" context="{'year':'current_year'}" help="Journal Entries with period in current year"/>
+                    <filter string="This Period" name="period" context="{'period':'current_period'}" help="Journal Entries with period in current period"/> -->
                     <separator/>
                     <filter string="Projects" domain="[('project_line_id', '!=', False)]" help="Projects Only"/>
                     <filter string="Non Projects" domain="[('project_line_id', '=', False)]" help="Non Projects Only"/>
@@ -105,9 +105,11 @@
             <field name="view_mode">tree,graph</field>
             <field name="search_view_id" ref="view_hwf_monthly_report_search"/>
             <field name="view_id" ref="view_hwf_monthly_report_tree"/>
-            <field name="context">{'group_by':[], 'search_default_project_categ':1, 'search_default_project':1, 'search_default_account':1, 'search_default_thisyear':1, 'group_by_no_leaf':0}</field>
+            <!-- <field name="context">{'group_by':[], 'search_default_project_categ':1, 'search_default_project':1, 'search_default_account':1, 'search_default_thisyear':1, 'group_by_no_leaf':0}</field> -->
+            <field name="context">{}</field>
             <field name="help">From this view, have an analysis of your different financial accounts. The document shows your debit and credit taking in consideration some criteria you can choose by using the search tool.</field>
         </record>
-        <menuitem action="action_hwf_monthly_report_all" id="menu_action_hwf_monthly_report_all" parent="npo.menu_account" groups="account.group_account_manager" sequence="100"/>
+        <menuitem action="action_hwf_monthly_report_all" id="menu_action_hwf_monthly_report_all" 
+            parent="npo.menu_account" groups="base.group_system" sequence="100"/>
     </data>
 </openerp>
